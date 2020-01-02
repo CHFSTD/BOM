@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".dir_Test.FragmentTest"
+        android:padding="16dp">
+
+    <TextView
+            android:id="@+id/fTest_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bsrtF_first"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+            android:id="@+id/fTest_Btn_js"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bsrtF_btn_js"
+            app:layout_constraintTop_toBottomOf="@+id/fTest_tv"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fTest_Btn_scdl" />
+
+    <Button
+            android:id="@+id/fTest_Btn_scdl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bsrtF_btn_scdl"
+            app:layout_constraintTop_toBottomOf="@+id/fTest_tv"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fTest_Btn_js"
+            app:layout_constraintEnd_toEndOf="parent"
+
+             />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

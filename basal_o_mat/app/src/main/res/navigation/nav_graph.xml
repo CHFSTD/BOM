@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+            app:startDestination="@id/navigation_start">
+    <fragment android:id="@+id/navigation_start" android:name="com.hofstadtchristopher.basal_o_mat.FragmentStart"
+              android:label="Start" tools:layout="@layout/fragment_start">
+        <action
+                android:id="@+id/action_to_navigation_test"
+                app:destination="@id/navigation_test"
+                app:popUpToInclusive="false" />
+    </fragment>
+    <fragment android:id="@+id/navigation_test" android:name="com.hofstadtchristopher.basal_o_mat.dir_Test.FragmentTest"
+              android:label="Test" tools:layout="@layout/fragment_test">
+        <action
+                android:id="@+id/action_to_fragmentTestStart"
+                app:destination="@+id/fragmentTestStart" />
+        <action
+                android:id="@+id/action_to_fragmentTestSchedule"
+                app:destination="@+id/fragmentTestSchedule" />
+    </fragment>
+    <fragment
+            android:id="@+id/navigation_protocol"
+            android:name="com.hofstadtchristopher.basal_o_mat.FragmentProtocol"
+            android:label="Protokoll"
+            tools:layout="@layout/fragment_protocol" />
+    <fragment
+            android:id="@+id/navigation_profil"
+            android:name="com.hofstadtchristopher.basal_o_mat.FragmentProfile"
+            android:label="Profil"
+            tools:layout="@layout/fragment_profile" />
+    <fragment
+            android:id="@+id/navigation_more"
+            android:name="com.hofstadtchristopher.basal_o_mat.FragmentMore"
+            android:label="Mehr"
+            tools:layout="@layout/fragment_more" />
+    <fragment
+            android:id="@+id/fragmentTestStart"
+            android:name="com.hofstadtchristopher.basal_o_mat.dir_Test.FragmentTestStart"
+            android:label="Test starten"
+            tools:layout="@layout/fragment_test_start" />
+    <fragment
+            android:id="@+id/fragmentTestSchedule"
+            android:name="com.hofstadtchristopher.basal_o_mat.dir_Test.FragmentTestSchedule"
+            android:label="Zeitpunkt festlegen"
+            tools:layout="@layout/fragment_test_schedule" />
+</navigation>
