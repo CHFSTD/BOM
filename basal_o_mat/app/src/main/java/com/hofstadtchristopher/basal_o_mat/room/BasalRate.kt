@@ -2,6 +2,7 @@ package com.hofstadtchristopher.basal_o_mat.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "BasalRates")
@@ -76,10 +77,43 @@ data class BasalRate(
     var rate22: Int = 0,
 
     @ColumnInfo(name = "23")
-    var rate23: Int = 0
+    var rate23: Int = 0,
+
+    @ColumnInfo(name = "Name")
+    val name: String,
+
+    @ColumnInfo(name = "Note")
+    var note: String = ""
     ) {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ID")
     var id: Int = 0
+
+    fun dayRate(): Int {
+        return (rate00
+                + rate01
+                + rate02
+                + rate03
+                + rate04
+                + rate05
+                + rate06
+                + rate07
+                + rate08
+                + rate09
+                + rate10
+                + rate11
+                + rate12
+                + rate13
+                + rate14
+                + rate15
+                + rate16
+                + rate17
+                + rate18
+                + rate19
+                + rate20
+                + rate21
+                + rate22
+                + rate23)
+    }
 }
