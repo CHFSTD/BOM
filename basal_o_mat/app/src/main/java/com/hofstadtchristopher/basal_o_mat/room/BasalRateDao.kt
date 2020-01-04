@@ -18,6 +18,9 @@ interface BasalRateDao {
     @Update(entity = BasalRate::class)
     suspend fun update(bRate: BasalRate)
 
-    @Delete(entity = BasalRate::class)
-    suspend fun delete(bRate: BasalRate)
+    @Query("DELETE FROM BasalRates WHERE ID = :id")
+    suspend fun delete(id: Int)
+
+    @Query("DELETE FROM BasalRates")
+    suspend fun deleteAll()
 }

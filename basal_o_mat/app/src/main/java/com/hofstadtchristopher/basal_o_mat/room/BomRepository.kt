@@ -25,8 +25,8 @@ class BomRepository(private val basalRateDao: BasalRateDao) {
         Log.i("RoomDB", "Basalrate: ${bRate.name} with id: ${bRate.id} updated to {$bRate}")
     }
 
-    suspend fun delete(bRate: BasalRate) {
-        basalRateDao.delete(bRate)
-        Log.i("RoomDB", "Basalrate: ${bRate.name} with id: ${bRate.id} deleted")
+    suspend fun delete(id: Int) {
+        basalRateDao.delete(id)
+        Log.i("RoomDB", "Basalrate with id: ${id} deleted")
     }
 }
