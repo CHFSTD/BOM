@@ -26,7 +26,7 @@
             tools:layout="@layout/fragment_protocol" />
     <fragment
             android:id="@+id/navigation_profil"
-            android:name="com.hofstadtchristopher.basal_o_mat.FragmentProfile"
+            android:name="com.hofstadtchristopher.basal_o_mat.dir_Profil.FragmentProfile"
             android:label="Profil"
             tools:layout="@layout/fragment_profile" />
     <fragment

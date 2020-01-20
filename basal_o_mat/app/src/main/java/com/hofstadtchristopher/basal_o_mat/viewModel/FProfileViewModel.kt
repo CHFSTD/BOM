@@ -19,4 +19,24 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
         repository = BomRepository(basalRateDao)    //TODO add testDAO
         allBasalRates = repository.bRateList
     }
+
+    fun insert(bRate: BasalRate) = viewModelScope.launch {
+        repository.insert(bRate)
+    }
+
+    fun getAll() {
+        allBasalRates = repository.getAll()
+    }
+
+    fun getBasalRate(id: Int): LiveData<List<BasalRate>> {
+        return repository.getBasalRate(id)
+    }
+
+    fun update(bRate: BasalRate) = viewModelScope.launch {
+        repository.update(bRate)
+    }
+
+    fun delete(id: Int) = viewModelScope.launch {
+        repository.delete(id)
+    }
 }
