@@ -28,7 +28,11 @@
             android:id="@+id/navigation_profil"
             android:name="com.hofstadtchristopher.basal_o_mat.dir_Profil.FragmentProfile"
             android:label="Profil"
-            tools:layout="@layout/fragment_profile" />
+            tools:layout="@layout/fragment_profile" >
+        <action
+                android:id="@+id/action_to_fragmentAddBasalRate"
+                app:destination="@id/fragmentAddBasalRate" />
+    </fragment>
     <fragment
             android:id="@+id/navigation_more"
             android:name="com.hofstadtchristopher.basal_o_mat.FragmentMore"
@@ -44,4 +48,9 @@
             android:name="com.hofstadtchristopher.basal_o_mat.dir_Test.FragmentTestSchedule"
             android:label="Zeitpunkt festlegen"
             tools:layout="@layout/fragment_test_schedule" />
+    <fragment
+            android:id="@+id/fragmentAddBasalRate"
+            android:name="com.hofstadtchristopher.basal_o_mat.dir_Profil.FragmentAddBasalRate"
+            android:label="fragment_add_basal_rate"
+            tools:layout="@layout/fragment_add_basal_rate" />
 </navigation>
