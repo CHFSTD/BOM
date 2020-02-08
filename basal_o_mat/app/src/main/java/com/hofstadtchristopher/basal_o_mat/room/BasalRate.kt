@@ -13,76 +13,76 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "BasalRates")
 data class BasalRate(
     @ColumnInfo(name = "00")
-    var rate00: Int = 0,
+    var rate00: Float = 0F,
 
     @ColumnInfo(name = "01")
-    var rate01: Int = 0,
+    var rate01: Float = 0F,
 
     @ColumnInfo(name = "02")
-    var rate02: Int = 0,
+    var rate02: Float = 0F,
 
     @ColumnInfo(name = "03")
-    var rate03: Int = 0,
+    var rate03: Float = 0F,
 
     @ColumnInfo(name = "04")
-    var rate04: Int = 0,
+    var rate04: Float = 0F,
 
     @ColumnInfo(name = "05")
-    var rate05: Int = 0,
+    var rate05: Float = 0F,
 
     @ColumnInfo(name = "06")
-    var rate06: Int = 0,
+    var rate06: Float = 0F,
 
     @ColumnInfo(name = "07")
-    var rate07: Int = 0,
+    var rate07: Float = 0F,
 
     @ColumnInfo(name = "08")
-    var rate08: Int = 0,
+    var rate08: Float = 0F,
 
     @ColumnInfo(name = "09")
-    var rate09: Int = 0,
+    var rate09: Float = 0F,
 
     @ColumnInfo(name = "10")
-    var rate10: Int = 0,
+    var rate10: Float = 0F,
 
     @ColumnInfo(name = "11")
-    var rate11: Int = 0,
+    var rate11: Float = 0F,
 
     @ColumnInfo(name = "12")
-    var rate12: Int = 0,
+    var rate12: Float = 0F,
 
     @ColumnInfo(name = "13")
-    var rate13: Int = 0,
+    var rate13: Float = 0F,
 
     @ColumnInfo(name = "14")
-    var rate14: Int = 0,
+    var rate14: Float = 0F,
 
     @ColumnInfo(name = "15")
-    var rate15: Int = 0,
+    var rate15: Float = 0F,
 
     @ColumnInfo(name = "16")
-    var rate16: Int = 0,
+    var rate16: Float = 0F,
 
     @ColumnInfo(name = "17")
-    var rate17: Int = 0,
+    var rate17: Float = 0F,
 
     @ColumnInfo(name = "18")
-    var rate18: Int = 0,
+    var rate18: Float = 0F,
 
     @ColumnInfo(name = "19")
-    var rate19: Int = 0,
+    var rate19: Float = 0F,
 
     @ColumnInfo(name = "20")
-    var rate20: Int = 0,
+    var rate20: Float = 0F,
 
     @ColumnInfo(name = "21")
-    var rate21: Int = 0,
+    var rate21: Float = 0F,
 
     @ColumnInfo(name = "22")
-    var rate22: Int = 0,
+    var rate22: Float = 0F,
 
     @ColumnInfo(name = "23")
-    var rate23: Int = 0,
+    var rate23: Float = 0F,
 
     @ColumnInfo(name = "Name")
     val name: String,
@@ -95,7 +95,7 @@ data class BasalRate(
     @ColumnInfo(name = "ID")
     var id: Int = 0
 
-    fun dayRate(): Int {
+    fun dayRate(): Float {
         return (rate00
                 + rate01
                 + rate02

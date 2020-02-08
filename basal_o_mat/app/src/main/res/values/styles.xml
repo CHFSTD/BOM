@@ -14,5 +14,11 @@
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
 
+    <style name="fAddBrUnitBtn">
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_width">68dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 
 </resources>

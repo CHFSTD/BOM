@@ -11,4 +11,16 @@
     <string name="bsrtF_first">Möchten Sie den Basalraten Test jetzt starten oder einen Zeitpunkt für den Test planen?</string>
     <string name="bsrtF_btn_js">Jetzt starten</string>
     <string name="bsrtF_btn_scdl">Zeitpunkt festlegen</string>
+    <string name="fAddBr_time_low">0%1$d:00 &#8211; 0%2$d:00 Uhr</string>
+    <string name="fAddBr_time_nine">0%1$d:00 &#8211; %2$d:00 Uhr</string>
+    <string name="fAddBr_time_high">%1$d:00 &#8211; %2$d:00 Uhr</string>
+    <string name="btn_minusOne">-1</string>
+    <string name="btn_plusOne">+1</string>
+    <string name="btn_minusPointOne">-0,10</string>
+    <string name="btn_minusPointZeroOne">-0,01</string>
+    <string name="btn_plusPointZeroOne">+0,01</string>
+    <string name="btn_plusPointOne">+0,10</string>
+    <string name="input_basalunit_to_low">Eingegebene Basaleinheit darf nicht unter 0,00 liegen</string>
+    <string name="input_basalunit_to_high">Eingegebene Basaleinheit darf nicht über 4,00 liegen</string>
+    <string name="btn_saveProfile">Basalratenprofil speichern</string>
 </resources>

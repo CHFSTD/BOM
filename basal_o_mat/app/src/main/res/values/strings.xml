@@ -16,4 +16,17 @@
     <string name="lorem_middle" translatable="false">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</string>
     <string name="lorem_long" translatable="false">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</string>
     <string name="default_string" translatable="false">default</string>
+    <string name="fAddBr_time_low">0%1$d:00 &#8211; 0%2$d:00</string>
+    <string name="fAddBr_time_nine">0%1$d:00 &#8211; %2$d:00</string>
+    <string name="fAddBr_time_high">%1$d:00 &#8211; %2$d:00</string>
+    <string name="number_to_string" translatable="false">%1$.2f</string>
+    <string name="btn_plusOne">+1</string>
+    <string name="btn_minusOne">-1</string>
+    <string name="btn_minusPointOne">-0.10</string>
+    <string name="btn_minusPointZeroOne">-0.01</string>
+    <string name="btn_plusPointZeroOne">+0.01</string>
+    <string name="btn_plusPointOne">+0.10</string>
+    <string name="input_basalunit_to_low">Inputted basal unit can\'t be lower than 0.00</string>
+    <string name="input_basalunit_to_high">Inputted basal unit can\'t be higher than 4.00</string>
+    <string name="btn_saveProfile">Save Basalrate Profile</string>
 </resources>
