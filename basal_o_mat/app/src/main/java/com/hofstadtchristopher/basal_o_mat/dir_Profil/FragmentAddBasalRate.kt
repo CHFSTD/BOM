@@ -7,9 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 
 import com.hofstadtchristopher.basal_o_mat.R
 import com.hofstadtchristopher.basal_o_mat.viewModel.FProfileViewModel
@@ -36,18 +38,25 @@ class FragmentAddBasalRate : Fragment() {
 
         fAddBr_time.text = getString(R.string.fAddBr_time_low, fProfileViewModel.selectedHour, fProfileViewModel.selectedHour+1)
         setUnit()
+        fAddBr_profileNameET.editText!!.setText(fProfileViewModel.tmpProfilName)
 
         fAddBr_profileNameET.editText!!.setOnFocusChangeListener { _, hasFocus ->
             if(!hasFocus) {
                 if (validateProfileName()) {
                     fProfileViewModel.tmpProfilName = fAddBr_profileNameET.editText!!.text.toString().trim()
-                    Toast.makeText(context, fProfileViewModel.tmpProfilName, Toast.LENGTH_LONG).show()
                     checkEnableSaveBtn()
                 }
                 //hide keyboard when editText lost focus
                 val imm: InputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(fAddBr_profileNameET.windowToken, 0)
             }
+        }
+
+        fAddBr_profileNameET.editText!!.setOnEditorActionListener { v, i, keyEvent ->
+            if(i == EditorInfo.IME_ACTION_DONE) {
+                v.clearFocus()
+            }
+            false
         }
 
         fAddBr_btn_next.setOnClickListener {
@@ -66,10 +75,10 @@ class FragmentAddBasalRate : Fragment() {
 
         fAddBr_btn_minusOne.setOnClickListener {
             if (fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] < 1F) {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] = 0F
+                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] = 0.0F
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_low)
             } else {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour]-= 1F
+                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour]-= 1.0F
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
@@ -78,7 +87,7 @@ class FragmentAddBasalRate : Fragment() {
 
         fAddBr_btn_minusPointOne.setOnClickListener {
             if (fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] < 0.10F) {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] = 0F
+                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] = 0.0F
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_low)
             } else {
                 fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour]-= 0.10F
@@ -89,11 +98,11 @@ class FragmentAddBasalRate : Fragment() {
         }
 
         fAddBr_btn_minusPointZeroOne.setOnClickListener {
-            if (fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] < 0.01F) {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] = 0F
+            if (fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] < 0.010F) {
+                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] = 0.0F
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_low)
             } else {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour]-= 0.01F
+                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour]-= 0.010F
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
@@ -105,7 +114,7 @@ class FragmentAddBasalRate : Fragment() {
                 fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] = 4F
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_high)
             } else {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour]+=1F
+                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour]+=1.0F
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
@@ -129,11 +138,16 @@ class FragmentAddBasalRate : Fragment() {
                 fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] = 4F
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_high)
             } else {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour]+=0.01F
+                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour]+=0.010F
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
             setUnit()
+        }
+
+        fAddBr_btn_saveProfile.setOnClickListener {
+            fProfileViewModel.uploadProfil(isRdyToSave())
+            Navigation.findNavController(it).navigate(FragmentAddBasalRateDirections.actionToNavigationProfil())
         }
 
     }

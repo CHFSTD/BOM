@@ -32,6 +32,9 @@
         <action
                 android:id="@+id/action_to_fragmentAddBasalRate"
                 app:destination="@id/fragmentAddBasalRate" />
+        <action
+                android:id="@+id/action_to_fragmentUpdateBasalRate"
+                app:destination="@id/fragmentUpdateBasalRate" />
     </fragment>
     <fragment
             android:id="@+id/navigation_more"
@@ -52,5 +55,21 @@
             android:id="@+id/fragmentAddBasalRate"
             android:name="com.hofstadtchristopher.basal_o_mat.dir_Profil.FragmentAddBasalRate"
             android:label="fragment_add_basal_rate"
-            tools:layout="@layout/fragment_add_basal_rate" />
+            tools:layout="@layout/fragment_add_basal_rate" >
+        <action
+                android:id="@+id/action_to_navigation_profil"
+                app:destination="@id/navigation_profil" />
+    </fragment>
+    <fragment
+            android:id="@+id/fragmentUpdateBasalRate"
+            android:name="com.hofstadtchristopher.basal_o_mat.dir_Profil.FragmentUpdateBasalRate"
+            android:label="fragment_update_basal_rate"
+            tools:layout="@layout/fragment_update_basal_rate" >
+        <argument
+                android:name="bRateID"
+                app:argType="integer" />
+        <action
+                android:id="@+id/action_to_navigation_profil"
+                app:destination="@id/navigation_profil" />
+    </fragment>
 </navigation>

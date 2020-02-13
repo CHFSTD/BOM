@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".dir_Profil.FragmentAddBasalRate"
+        tools:context=".dir_Profil.FragmentUpdateBasalRate"
         android:focusableInTouchMode="true"
         android:focusable="true"
         android:clickable="true"
@@ -14,7 +14,7 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fAddBr_title"
+            android:id="@+id/fUpdateBr_title"
             android:text="Bitte geben Sie einen Profilnamen ein und legen Sie die Basalraten Werte fest"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -22,98 +22,98 @@
             app:layout_constraintBottom_toTopOf="@id/graph_placeholder"
             android:layout_marginTop="8dp"
             android:textAlignment="center"
-    />
+            />
 
     <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:id="@+id/graph_placeholder"
-            app:layout_constraintTop_toBottomOf="@id/fAddBr_title"
+            app:layout_constraintTop_toBottomOf="@id/fUpdateBr_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             >
 
     </RelativeLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fAddBr_profileNameET"
-                android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fUpdateBr_profileNameET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Profilname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/graph_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/fUpdateBr_timeSection"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+
+            >
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Profilname"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/graph_placeholder"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/fAddBr_timeSection"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:inputType="text"
+                />
 
-                >
-
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    />
-
-        </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/fAddBr_timeSection"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fAddBr_profileNameET"
+            android:id="@+id/fUpdateBr_timeSection"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fUpdateBr_profileNameET"
 
             >
 
-            <com.google.android.material.button.MaterialButton
-                    android:id="@+id/fAddBr_btn_prev"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Zurück"
-                    android:layout_marginStart="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/fUpdateBr_btn_prev"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zurück"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 />
 
-            <TextView
-                    android:id="@+id/fAddBr_time"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:text="@string/fAddBr_time_low"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/fAddBr_btn_prev"
-                    app:layout_constraintEnd_toStartOf="@id/fAddBr_btn_next"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
+        <TextView
+                android:id="@+id/fUpdateBr_time"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="@string/fAddBr_time_low"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/fUpdateBr_btn_prev"
+                app:layout_constraintEnd_toStartOf="@id/fUpdateBr_btn_next"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 />
 
-            <com.google.android.material.button.MaterialButton
-                    android:id="@+id/fAddBr_btn_next"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Weiter"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-            />
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/fUpdateBr_btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weiter"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/fAddBr_unitSection"
+            android:id="@+id/fUpdateBr_unitSection"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/fAddBr_timeSection"
+            app:layout_constraintTop_toBottomOf="@id/fUpdateBr_timeSection"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -121,26 +121,26 @@
             >
 
         <com.google.android.material.button.MaterialButton
-                android:id="@+id/fAddBr_btn_finish"
+                android:id="@+id/fUpdateBr_btn_finish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="fertig"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/fAddBr_unitDisplay"
+                app:layout_constraintBottom_toTopOf="@id/fUpdateBr_unitDisplay"
                 android:layout_marginBottom="16dp"
                 android:visibility="gone"
                 />
 
         <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fAddBr_unitDisplay"
+                android:id="@+id/fUpdateBr_unitDisplay"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fAddBr_btn_finish"
+                app:layout_constraintTop_toBottomOf="@id/fUpdateBr_btn_finish"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/fAddBr_unitButtonsSection"
+                app:layout_constraintBottom_toTopOf="@id/fUpdateBr_unitButtonsSection"
                 android:layout_marginStart="48dp"
                 android:layout_marginEnd="48dp"
                 android:layout_marginBottom="16dp"
@@ -152,24 +152,24 @@
                     >
 
                 <TextView
-                        android:id="@+id/fAddBr_unitLabelTV"
+                        android:id="@+id/fUpdateBr_unitLabelTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Einheiten:"
                         android:textSize="32sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/fAddBr_unitTV"
+                        app:layout_constraintEnd_toStartOf="@id/fUpdateBr_unitTV"
                         app:layout_constraintBottom_toBottomOf="parent"
                         />
 
                 <TextView
-                        android:id="@+id/fAddBr_unitTV"
+                        android:id="@+id/fUpdateBr_unitTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/number_to_string"
                         android:textSize="32sp"
-                        app:layout_constraintStart_toEndOf="@id/fAddBr_unitLabelTV"
+                        app:layout_constraintStart_toEndOf="@id/fUpdateBr_unitLabelTV"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -179,71 +179,71 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/fAddBr_unitButtonsSection"
+                android:id="@+id/fUpdateBr_unitButtonsSection"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/fAddBr_btn_saveProfile"
+                app:layout_constraintBottom_toTopOf="@id/fUpdateBr_btn_saveProfile"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
-            >
+                >
 
             <com.google.android.material.button.MaterialButton
-                    android:id="@+id/fAddBr_btn_minusOne"
+                    android:id="@+id/fUpdateBr_btn_minusOne"
                     style="@style/fAddBrUnitBtn"
                     android:text="@string/btn_minusOne"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/fAddBr_btn_minusPointOne"
+                    app:layout_constraintEnd_toStartOf="@id/fUpdateBr_btn_minusPointOne"
                     app:layout_constraintBottom_toBottomOf="parent"
                     />
 
             <com.google.android.material.button.MaterialButton
-                    android:id="@+id/fAddBr_btn_minusPointOne"
+                    android:id="@+id/fUpdateBr_btn_minusPointOne"
                     style="@style/fAddBrUnitBtn"
                     android:text="@string/btn_minusPointOne"
-                    app:layout_constraintStart_toEndOf="@id/fAddBr_btn_minusOne"
+                    app:layout_constraintStart_toEndOf="@id/fUpdateBr_btn_minusOne"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/fAddBr_btn_minusPointZeroOne"
+                    app:layout_constraintEnd_toStartOf="@id/fUpdateBr_btn_minusPointZeroOne"
                     app:layout_constraintBottom_toBottomOf="parent"
                     />
 
             <com.google.android.material.button.MaterialButton
-                    android:id="@+id/fAddBr_btn_minusPointZeroOne"
+                    android:id="@+id/fUpdateBr_btn_minusPointZeroOne"
                     style="@style/fAddBrUnitBtn"
                     android:text="@string/btn_minusPointZeroOne"
-                    app:layout_constraintStart_toEndOf="@id/fAddBr_btn_minusPointOne"
+                    app:layout_constraintStart_toEndOf="@id/fUpdateBr_btn_minusPointOne"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/fAddBr_btn_plusPointZeroOne"
+                    app:layout_constraintEnd_toStartOf="@id/fUpdateBr_btn_plusPointZeroOne"
                     app:layout_constraintBottom_toBottomOf="parent"
                     />
 
             <com.google.android.material.button.MaterialButton
-                    android:id="@+id/fAddBr_btn_plusPointZeroOne"
+                    android:id="@+id/fUpdateBr_btn_plusPointZeroOne"
                     style="@style/fAddBrUnitBtn"
                     android:text="@string/btn_plusPointZeroOne"
-                    app:layout_constraintStart_toEndOf="@id/fAddBr_btn_minusPointZeroOne"
+                    app:layout_constraintStart_toEndOf="@id/fUpdateBr_btn_minusPointZeroOne"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/fAddBr_btn_plusPointOne"
+                    app:layout_constraintEnd_toStartOf="@id/fUpdateBr_btn_plusPointOne"
                     app:layout_constraintBottom_toBottomOf="parent"
                     />
 
             <com.google.android.material.button.MaterialButton
-                    android:id="@+id/fAddBr_btn_plusPointOne"
+                    android:id="@+id/fUpdateBr_btn_plusPointOne"
                     style="@style/fAddBrUnitBtn"
                     android:text="@string/btn_plusPointOne"
-                    app:layout_constraintStart_toEndOf="@id/fAddBr_btn_plusPointZeroOne"
+                    app:layout_constraintStart_toEndOf="@id/fUpdateBr_btn_plusPointZeroOne"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/fAddBr_btn_plusOne"
+                    app:layout_constraintEnd_toStartOf="@id/fUpdateBr_btn_plusOne"
                     app:layout_constraintBottom_toBottomOf="parent"
                     />
 
             <com.google.android.material.button.MaterialButton
-                    android:id="@+id/fAddBr_btn_plusOne"
+                    android:id="@+id/fUpdateBr_btn_plusOne"
                     style="@style/fAddBrUnitBtn"
                     android:text="@string/btn_plusOne"
-                    app:layout_constraintStart_toEndOf="@id/fAddBr_btn_plusPointOne"
+                    app:layout_constraintStart_toEndOf="@id/fUpdateBr_btn_plusPointOne"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -252,12 +252,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.button.MaterialButton
-                android:id="@+id/fAddBr_btn_saveProfile"
+                android:id="@+id/fUpdateBr_btn_saveProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_saveProfile"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fAddBr_unitSection"
+                app:layout_constraintTop_toBottomOf="@id/fUpdateBr_unitSection"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:enabled="false"
@@ -266,6 +266,7 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
     // The ViewModel maintains a reference to the repository to get data.
     private val repository: BomRepository
 
+
     var allBasalRates: LiveData<List<BasalRate>>
 
     /*stores addBasalRate fragment input unitl finished and uploaded to the database
@@ -25,7 +26,7 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
     var selectedHour: Int = 0
 
     //stores input (0 <= input <= 4) for basalRate. position in array declare the hour, so [0] is 00:00 o'clock, [1] is 01:00 o'clock and so on.
-    var tmpBasalProfile: Array<Float> = Array(24) {index -> 0F}
+    var tmpBasalProfile: Array<Float> = Array(24) {index -> 0F} //initialise every value with 0F
 
     init {
         val basalRateDao = BomDatabase.getDatabase(application, viewModelScope).basalRateDao()
@@ -33,6 +34,13 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
         allBasalRates = repository.bRateList
     }
 
+    private fun resetTmp() {
+        tmpProfilName = ""
+        selectedHour = 0
+        tmpBasalProfile.forEachIndexed { index, _ -> tmpBasalProfile[index] = 0F }
+    }
+
+    //uploads basalrate profile to database
     fun uploadProfil(rdy: Boolean) {
         if (rdy) {
             val bRate = BasalRate(
@@ -63,10 +71,11 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
                 tmpProfilName
                 )
             insert(bRate)
+            resetTmp()
         }
     }
 
-    fun insert(bRate: BasalRate) = viewModelScope.launch {
+    private fun insert(bRate: BasalRate) = viewModelScope.launch {
         repository.insert(bRate)
     }
 
