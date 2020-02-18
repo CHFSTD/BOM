@@ -9,7 +9,7 @@ interface BasalRateDao {
     @Insert
     suspend fun insert(bRate: BasalRate)
 
-    @Query("SELECT * from BasalRates ORDER BY Name ASC")
+    @Query("SELECT * from BasalRates ORDER BY ID ASC")
     fun getBasalRates(): LiveData<List<BasalRate>>
 
     @Query("SELECT * FROM BasalRates WHERE ID = :id")

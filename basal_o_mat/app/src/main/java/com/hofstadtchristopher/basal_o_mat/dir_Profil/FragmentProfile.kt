@@ -2,10 +2,12 @@ package com.hofstadtchristopher.basal_o_mat.dir_Profil
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -47,6 +49,15 @@ class FragmentProfile : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val adapter = BasalProfileItemAdapter()
+
+        adapter.setOnItemClickListener(object: BasalProfileItemAdapter.OnItemClickListener{
+            override fun onItemClick(position: Int) {
+                Navigation.findNavController(view!!)
+                    .navigate(FragmentProfileDirections.actionToFragmentUpdateBasalRate(position))
+
+            }
+        })
+
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
 

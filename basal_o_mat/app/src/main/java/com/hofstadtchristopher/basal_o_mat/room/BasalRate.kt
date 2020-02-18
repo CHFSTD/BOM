@@ -95,6 +95,35 @@ data class BasalRate(
     @ColumnInfo(name = "ID")
     var id: Int = 0
 
+    fun setRate(time: Int, value: Float) {
+        when(time) {
+            0 ->    rate00 = value
+            1 ->    rate01 = value
+            2 ->    rate02 = value
+            3 ->    rate03 = value
+            4 ->    rate04 = value
+            5 ->    rate05 = value
+            6 ->    rate06 = value
+            7 ->    rate07 = value
+            8 ->    rate08 = value
+            9 ->    rate09 = value
+            10 ->   rate10 = value
+            11 ->   rate11 = value
+            12 ->   rate12 = value
+            13 ->   rate13 = value
+            14 ->   rate14 = value
+            15 ->   rate15 = value
+            16 ->   rate16 = value
+            17 ->   rate17 = value
+            18 ->   rate18 = value
+            19 ->   rate19 = value
+            20 ->   rate20 = value
+            21 ->   rate21 = value
+            22 ->   rate22 = value
+            23 ->   rate23 = value
+        }
+    }
+
     fun dayRate(): Float {
         return (rate00
                 + rate01

@@ -16,17 +16,33 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
 
     var allBasalRates: LiveData<List<BasalRate>>
 
-    /*stores addBasalRate fragment input unitl finished and uploaded to the database
+    /* following variables will be for the addBasalRate fragment.
+    * addBasalRate fragment input will be stored unitl finished and uploaded to the database
     * so user doesn't lose his input when moving to another fragment before finishing addBasalRate process
     */
 
-    var tmpProfilName: String = ""
+    var upldProfilName: String = ""
 
     //stores the current hour where the user sets the basal rate
-    var selectedHour: Int = 0
+    var upldSelectedHour: Int = 0
 
     //stores input (0 <= input <= 4) for basalRate. position in array declare the hour, so [0] is 00:00 o'clock, [1] is 01:00 o'clock and so on.
-    var tmpBasalProfile: Array<Float> = Array(24) {index -> 0F} //initialise every value with 0F
+    var upldBasalProfile: Array<Float> = Array(24) {index -> 0F} //initialise every value with 0F
+
+    /*
+    * following variables will be for the updateBasalRate fragment.
+    */
+
+    lateinit var modProfilname: String
+
+    var modSelectedHour: Int = 0
+
+    lateinit var modBasalProfile: Array<Float>
+
+    lateinit var modBasalRate: BasalRate
+
+    //caches the basalrate position in allBasalRates list which will be modified in updateBasalRate fragment
+    var bRatePos: Int? = null
 
     init {
         val basalRateDao = BomDatabase.getDatabase(application, viewModelScope).basalRateDao()
@@ -35,44 +51,88 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
     }
 
     private fun resetTmp() {
-        tmpProfilName = ""
-        selectedHour = 0
-        tmpBasalProfile.forEachIndexed { index, _ -> tmpBasalProfile[index] = 0F }
+        upldProfilName = ""
+        upldSelectedHour = 0
+        upldBasalProfile.forEachIndexed { index, _ -> upldBasalProfile[index] = 0F }
     }
 
     //uploads basalrate profile to database
-    fun uploadProfil(rdy: Boolean) {
+    fun uploadProfile(rdy: Boolean) {
         if (rdy) {
             val bRate = BasalRate(
-                tmpBasalProfile[0],
-                tmpBasalProfile[1],
-                tmpBasalProfile[2],
-                tmpBasalProfile[3],
-                tmpBasalProfile[4],
-                tmpBasalProfile[5],
-                tmpBasalProfile[6],
-                tmpBasalProfile[7],
-                tmpBasalProfile[8],
-                tmpBasalProfile[9],
-                tmpBasalProfile[10],
-                tmpBasalProfile[11],
-                tmpBasalProfile[12],
-                tmpBasalProfile[13],
-                tmpBasalProfile[14],
-                tmpBasalProfile[15],
-                tmpBasalProfile[16],
-                tmpBasalProfile[17],
-                tmpBasalProfile[18],
-                tmpBasalProfile[19],
-                tmpBasalProfile[20],
-                tmpBasalProfile[21],
-                tmpBasalProfile[22],
-                tmpBasalProfile[23],
-                tmpProfilName
+                upldBasalProfile[0],
+                upldBasalProfile[1],
+                upldBasalProfile[2],
+                upldBasalProfile[3],
+                upldBasalProfile[4],
+                upldBasalProfile[5],
+                upldBasalProfile[6],
+                upldBasalProfile[7],
+                upldBasalProfile[8],
+                upldBasalProfile[9],
+                upldBasalProfile[10],
+                upldBasalProfile[11],
+                upldBasalProfile[12],
+                upldBasalProfile[13],
+                upldBasalProfile[14],
+                upldBasalProfile[15],
+                upldBasalProfile[16],
+                upldBasalProfile[17],
+                upldBasalProfile[18],
+                upldBasalProfile[19],
+                upldBasalProfile[20],
+                upldBasalProfile[21],
+                upldBasalProfile[22],
+                upldBasalProfile[23],
+                upldProfilName
                 )
             insert(bRate)
             resetTmp()
         }
+    }
+
+    fun initProfToBeModified() {
+        modBasalRate = allBasalRates.value!![bRatePos!!]
+
+        modBasalProfile = arrayOf(
+            modBasalRate.rate00,
+            modBasalRate.rate01,
+            modBasalRate.rate02,
+            modBasalRate.rate03,
+            modBasalRate.rate04,
+            modBasalRate.rate05,
+            modBasalRate.rate06,
+            modBasalRate.rate07,
+            modBasalRate.rate08,
+            modBasalRate.rate09,
+            modBasalRate.rate10,
+            modBasalRate.rate11,
+            modBasalRate.rate12,
+            modBasalRate.rate13,
+            modBasalRate.rate14,
+            modBasalRate.rate15,
+            modBasalRate.rate16,
+            modBasalRate.rate17,
+            modBasalRate.rate18,
+            modBasalRate.rate19,
+            modBasalRate.rate20,
+            modBasalRate.rate21,
+            modBasalRate.rate22,
+            modBasalRate.rate23
+        )
+
+        modProfilname = modBasalRate.name
+    }
+
+    private fun refreshAllBasalRates() {
+        if (allBasalRates != repository.getAll()) {
+            allBasalRates = repository.getAll()
+        }
+    }
+
+    //update cached bRate to update it on database
+    private fun updateBasalRate() {
+        modBasalProfile.forEachIndexed { index, value -> modBasalRate.setRate(index, value) }
     }
 
     private fun insert(bRate: BasalRate) = viewModelScope.launch {
@@ -88,7 +148,9 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun update(bRate: BasalRate) = viewModelScope.launch {
+        updateBasalRate()
         repository.update(bRate)
+        modSelectedHour = 0 //reset selected Hour
     }
 
     fun delete(id: Int) = viewModelScope.launch {

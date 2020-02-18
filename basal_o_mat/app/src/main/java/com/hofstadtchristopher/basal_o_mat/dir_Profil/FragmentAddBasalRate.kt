@@ -36,14 +36,14 @@ class FragmentAddBasalRate : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fAddBr_time.text = getString(R.string.fAddBr_time_low, fProfileViewModel.selectedHour, fProfileViewModel.selectedHour+1)
+        fAddBr_time.text = getString(R.string.fAddBr_time_low, fProfileViewModel.upldSelectedHour, fProfileViewModel.upldSelectedHour+1)
         setUnit()
-        fAddBr_profileNameET.editText!!.setText(fProfileViewModel.tmpProfilName)
+        fAddBr_profileNameET.editText!!.setText(fProfileViewModel.upldProfilName)
 
         fAddBr_profileNameET.editText!!.setOnFocusChangeListener { _, hasFocus ->
             if(!hasFocus) {
                 if (validateProfileName()) {
-                    fProfileViewModel.tmpProfilName = fAddBr_profileNameET.editText!!.text.toString().trim()
+                    fProfileViewModel.upldProfilName = fAddBr_profileNameET.editText!!.text.toString().trim()
                     checkEnableSaveBtn()
                 }
                 //hide keyboard when editText lost focus
@@ -74,11 +74,11 @@ class FragmentAddBasalRate : Fragment() {
         }
 
         fAddBr_btn_minusOne.setOnClickListener {
-            if (fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] < 1F) {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] = 0.0F
+            if (fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour] < 1F) {
+                fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour] = 0.0F
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_low)
             } else {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour]-= 1.0F
+                fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour]-= 1.0F
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
@@ -86,11 +86,11 @@ class FragmentAddBasalRate : Fragment() {
         }
 
         fAddBr_btn_minusPointOne.setOnClickListener {
-            if (fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] < 0.10F) {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] = 0.0F
+            if (fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour] < 0.10F) {
+                fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour] = 0.0F
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_low)
             } else {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour]-= 0.10F
+                fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour]-= 0.10F
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
@@ -98,11 +98,11 @@ class FragmentAddBasalRate : Fragment() {
         }
 
         fAddBr_btn_minusPointZeroOne.setOnClickListener {
-            if (fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] < 0.010F) {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] = 0.0F
+            if (fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour] < 0.010F) {
+                fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour] = 0.0F
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_low)
             } else {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour]-= 0.010F
+                fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour]-= 0.010F
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
@@ -110,11 +110,11 @@ class FragmentAddBasalRate : Fragment() {
         }
 
         fAddBr_btn_plusOne.setOnClickListener {
-            if (fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] > 3F) {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] = 4F
+            if (fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour] > 3F) {
+                fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour] = 4F
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_high)
             } else {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour]+=1.0F
+                fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour]+=1.0F
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
@@ -122,11 +122,11 @@ class FragmentAddBasalRate : Fragment() {
         }
 
         fAddBr_btn_plusPointOne.setOnClickListener {
-            if (fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] > 3.9F) {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] = 4F
+            if (fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour] > 3.9F) {
+                fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour] = 4F
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_high)
             } else {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour]+=0.10F
+                fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour]+=0.10F
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
@@ -134,11 +134,11 @@ class FragmentAddBasalRate : Fragment() {
         }
 
         fAddBr_btn_plusPointZeroOne.setOnClickListener {
-            if (fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] > 3.99F) {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour] = 4F
+            if (fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour] > 3.99F) {
+                fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour] = 4F
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_high)
             } else {
-                fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour]+=0.010F
+                fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour]+=0.010F
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
@@ -146,7 +146,7 @@ class FragmentAddBasalRate : Fragment() {
         }
 
         fAddBr_btn_saveProfile.setOnClickListener {
-            fProfileViewModel.uploadProfil(isRdyToSave())
+            fProfileViewModel.uploadProfile(isRdyToSave())
             Navigation.findNavController(it).navigate(FragmentAddBasalRateDirections.actionToNavigationProfil())
         }
 
@@ -169,15 +169,15 @@ class FragmentAddBasalRate : Fragment() {
     * when selected time is 00:00 previous selected time will be 23:00
      */
     private fun setTime() {
-        val selTime = fProfileViewModel.selectedHour
+        val selTime = fProfileViewModel.upldSelectedHour
         when {
             selTime > 23 -> {
-                fProfileViewModel.selectedHour = 0
-                setDisplay(fProfileViewModel.selectedHour)
+                fProfileViewModel.upldSelectedHour = 0
+                setDisplay(fProfileViewModel.upldSelectedHour)
             }
             selTime < 0 -> {
-                fProfileViewModel.selectedHour = 23
-                setDisplay(fProfileViewModel.selectedHour)
+                fProfileViewModel.upldSelectedHour = 23
+                setDisplay(fProfileViewModel.upldSelectedHour)
             }
             selTime in 0..23 -> {
                 setDisplay(selTime)
@@ -194,34 +194,34 @@ class FragmentAddBasalRate : Fragment() {
     }
 
     private fun nextTime() {
-        fProfileViewModel.selectedHour++
+        fProfileViewModel.upldSelectedHour++
         setTime()
     }
 
     private fun prevTime() {
-        fProfileViewModel.selectedHour--
+        fProfileViewModel.upldSelectedHour--
         setTime()
     }
 
     //displays the basalunit
     private fun setUnit() {
-        fAddBr_unitTV.text = getString(R.string.number_to_string, fProfileViewModel.tmpBasalProfile[fProfileViewModel.selectedHour])
+        fAddBr_unitTV.text = getString(R.string.number_to_string, fProfileViewModel.upldBasalProfile[fProfileViewModel.upldSelectedHour])
         checkEnableSaveBtn()
     }
 
     //this method copies the previous basalunit to the next if the next unit is empty (equal to 0.00) and the previous is not empty
     private fun setUnitForBtnNext() {
-        val pos = fProfileViewModel.selectedHour
-        if(fProfileViewModel.tmpBasalProfile[pos] == 0F) {
+        val pos = fProfileViewModel.upldSelectedHour
+        if(fProfileViewModel.upldBasalProfile[pos] == 0F) {
             if(pos == 0) {
-                fAddBr_unitTV.text = getString(R.string.number_to_string, fProfileViewModel.tmpBasalProfile[pos+23])
-                fProfileViewModel.tmpBasalProfile[pos]=fProfileViewModel.tmpBasalProfile[pos+23]
+                fAddBr_unitTV.text = getString(R.string.number_to_string, fProfileViewModel.upldBasalProfile[pos+23])
+                fProfileViewModel.upldBasalProfile[pos]=fProfileViewModel.upldBasalProfile[pos+23]
             } else {
-                fAddBr_unitTV.text = getString(R.string.number_to_string, fProfileViewModel.tmpBasalProfile[pos-1])
-                fProfileViewModel.tmpBasalProfile[pos]=fProfileViewModel.tmpBasalProfile[pos-1]
+                fAddBr_unitTV.text = getString(R.string.number_to_string, fProfileViewModel.upldBasalProfile[pos-1])
+                fProfileViewModel.upldBasalProfile[pos]=fProfileViewModel.upldBasalProfile[pos-1]
             }
         } else {
-            fAddBr_unitTV.text = getString(R.string.number_to_string, fProfileViewModel.tmpBasalProfile[pos])
+            fAddBr_unitTV.text = getString(R.string.number_to_string, fProfileViewModel.upldBasalProfile[pos])
         }
         checkEnableSaveBtn()
     }
@@ -235,8 +235,8 @@ class FragmentAddBasalRate : Fragment() {
         if (pNameInput.isEmpty()) {
             return false
         } else {
-            for (v in fProfileViewModel.tmpBasalProfile) {
-                if (v == 0F) {
+            for (el in fProfileViewModel.upldBasalProfile) {
+                if (el == 0F) {
                     return false
                 }
             }
