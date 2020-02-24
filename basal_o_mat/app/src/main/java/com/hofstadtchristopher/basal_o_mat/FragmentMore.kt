@@ -17,14 +17,14 @@ import com.hofstadtchristopher.basal_o_mat.viewModel.FMoreViewModel
  */
 class FragmentMore : Fragment() {
 
-    private lateinit var fMoreViewModel: FMoreViewModel
+    private lateinit var vMdl: FMoreViewModel
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        fMoreViewModel = ViewModelProvider(this).get(FMoreViewModel::class.java)
+        vMdl = ViewModelProvider(this).get(FMoreViewModel::class.java)
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_more, container, false)
         recyclerView = view.findViewById(R.id.recyclerview_fMore)
@@ -35,7 +35,7 @@ class FragmentMore : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val adapter = ListItemAdapter()
-        adapter.setItems(fMoreViewModel.recViewitems)
+        adapter.setItems(vMdl.recViewitems)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
     }

@@ -22,14 +22,20 @@ class NormItemAdapter internal constructor(
         val subTitle: TextView = itemView.rVI_normal_subtitle
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NormItemHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): NormItemHolder {
         val itemView: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.recyclerview_item_normal, parent, false)
 
         return NormItemHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: NormItemHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: NormItemHolder,
+        position: Int
+    ) {
         val current = items[position]
         holder.imageView.setImageResource(current.image)
         holder.title.text = current.title

@@ -1,33 +1,128 @@
 package com.hofstadtchristopher.basal_o_mat.dir_Test
 
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.hofstadtchristopher.basal_o_mat.R
+import com.hofstadtchristopher.basal_o_mat.viewModel.FTestViewModel
 import kotlinx.android.synthetic.main.fragment_test.*
 
 class FragmentTest : Fragment() {
+
+    private lateinit var vMdl: FTestViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        vMdl = ViewModelProvider(activity!!).get(FTestViewModel::class.java)
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_test, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        vMdl.allBasalRates.observe(viewLifecycleOwner, Observer { bRates ->
+            bRates?.let {
+                vMdl.bRateNames = it
+            }
+        })
+
+        vMdl.setSize()
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        togglDefault()
+        checkTimerStart()
+
+
+
         fTest_Btn_js.setOnClickListener {
-            Navigation.findNavController(it).navigate(FragmentTestDirections.actionToFragmentTestStart())
+            val choiceArr: Array<String> = vMdl.createSingleChoiceList()
+            choiceArr.forEach { Log.i("Array", "Element is $it") }
+            MaterialAlertDialogBuilder(context)
+                .setTitle("test")
+                .setSingleChoiceItems(choiceArr, -1){
+                        _, i ->
+                        vMdl.chosenBRate = vMdl.bRateNames[i]
+                        Log.i("Choice", "Choice is ${choiceArr[i]}")
+                        Log.i("Choice", "Chosen bRate is ${vMdl.chosenBRate}")
+                }
+                .setPositiveButton(getString(R.string.btn_continue)) { _, _ ->
+                    Navigation.findNavController(it).navigate(FragmentTestDirections.actionToFragmentBloodsugarInput())
+                    vMdl.isTestMode = true
+                    togglDefault()
+                }
+                .setNegativeButton(getString(R.string.cancel), null)
+                .show()
         }
 
         fTest_Btn_scdl.setOnClickListener {
-            Navigation.findNavController(it).navigate(FragmentTestDirections.actionToFragmentTestSchedule())
+            vMdl.createSingleChoiceList()
+        }
+
+        fTest_Btn_test.setOnClickListener {
+            startTimer()
         }
     }
+
+    fun togglDefault() {
+        if(vMdl.isTestMode) {
+            fTest_layout_default.visibility = View.GONE
+            fTest_layout_tMode.visibility = View.VISIBLE
+        } else {
+            fTest_layout_default.visibility = View.VISIBLE
+            fTest_layout_tMode.visibility = View.GONE
+        }
+
+    }
+
+    fun checkTimerStart() {
+        if(vMdl.isTestMode) {
+            startTimer()
+        }
+    }
+
+    fun startTimer() {
+        fTest_progressBar.max = (vMdl.START_TIME_IN_MILLIS / 1000).toInt()
+        vMdl.timer = object: CountDownTimer(vMdl.START_TIME_IN_MILLIS, 1000) {
+            override fun onFinish() {
+                vMdl.isTimerRunning = false
+
+                activity!!.findNavController(R.id.nav_host_fragment).navigate(FragmentTestDirections.actionToFragmentBloodsugarInput())
+
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+                vMdl.timeLeftInSecs = millisUntilFinished / 1000
+                updateCountDown()
+            }
+
+        }.start()
+    }
+
+    fun updateCountDown() {
+        val timeLeftInMins = vMdl.timeLeftInSecs / 60
+        val timeLeftInSecs = vMdl.timeLeftInSecs % 60
+
+        fTest_tv_countdown.text = getString(R.string.countDown, timeLeftInMins, timeLeftInSecs)
+
+        fTest_progressBar.progress = vMdl.timeLeftInSecs.toInt()
+    }
+
+
 }

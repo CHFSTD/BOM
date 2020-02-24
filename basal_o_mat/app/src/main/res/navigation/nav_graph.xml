@@ -1,47 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
-            app:startDestination="@id/navigation_start">
-    <fragment android:id="@+id/navigation_start" android:name="com.hofstadtchristopher.basal_o_mat.FragmentStart"
-              android:label="Start" tools:layout="@layout/fragment_start">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_graph"
+        android:label="test"
+        app:startDestination="@id/navigation_start">
+
+    <fragment
+            android:id="@+id/navigation_start"
+            android:name="com.hofstadtchristopher.basal_o_mat.FragmentStart"
+            android:label="@string/label_start"
+            tools:layout="@layout/fragment_start">
         <action
                 android:id="@+id/action_to_navigation_test"
                 app:destination="@id/navigation_test"
                 app:popUpToInclusive="false" />
     </fragment>
-    <fragment android:id="@+id/navigation_test" android:name="com.hofstadtchristopher.basal_o_mat.dir_Test.FragmentTest"
-              android:label="Test" tools:layout="@layout/fragment_test">
+
+    <fragment
+            android:id="@+id/navigation_test"
+            android:name="com.hofstadtchristopher.basal_o_mat.dir_Test.FragmentTest"
+            android:label="@string/label_basalrate_test"
+            tools:layout="@layout/fragment_test">
         <action
                 android:id="@+id/action_to_fragmentTestStart"
                 app:destination="@+id/fragmentTestStart" />
         <action
                 android:id="@+id/action_to_fragmentTestSchedule"
-                app:destination="@+id/fragmentTestSchedule" />
+                app:destination="@+id/fragmentTestSchedule"/>
+        <action
+                android:id="@+id/action_to_fragmentBloodsugarInput"
+                app:destination="@id/fragmentBloodsugarInput">
+
+        </action>
     </fragment>
+
     <fragment
             android:id="@+id/navigation_protocol"
             android:name="com.hofstadtchristopher.basal_o_mat.FragmentProtocol"
-            android:label="Protokoll"
+            android:label="@string/label_protocol"
             tools:layout="@layout/fragment_protocol" />
+
     <fragment
             android:id="@+id/navigation_profil"
-            android:name="com.hofstadtchristopher.basal_o_mat.FragmentProfile"
-            android:label="Profil"
-            tools:layout="@layout/fragment_profile" />
+            android:name="com.hofstadtchristopher.basal_o_mat.dir_Profil.FragmentProfile"
+            android:label="@string/label_basalrate_profile"
+            tools:layout="@layout/fragment_profile">
+        <action
+                android:id="@+id/action_to_fragmentAddBasalRate"
+                app:destination="@id/fragmentAddBasalRate" />
+        <action
+                android:id="@+id/action_to_fragmentUpdateBasalRate"
+                app:destination="@id/fragmentUpdateBasalRate" />
+    </fragment>
+
     <fragment
             android:id="@+id/navigation_more"
             android:name="com.hofstadtchristopher.basal_o_mat.FragmentMore"
-            android:label="Mehr"
+            android:label="@string/label_more"
             tools:layout="@layout/fragment_more" />
+
     <fragment
             android:id="@+id/fragmentTestStart"
             android:name="com.hofstadtchristopher.basal_o_mat.dir_Test.FragmentTestStart"
-            android:label="Test starten"
-            tools:layout="@layout/fragment_test_start" />
+            android:label="@string/label_basalrate_test"
+            tools:layout="@layout/fragment_test_start">
+        <action
+                android:id="@+id/action_fragmentTestStart_to_fragmentBloodsugarInput"
+                app:destination="@id/fragmentBloodsugarInput" />
+    </fragment>
+
     <fragment
             android:id="@+id/fragmentTestSchedule"
             android:name="com.hofstadtchristopher.basal_o_mat.dir_Test.FragmentTestSchedule"
             android:label="Zeitpunkt festlegen"
             tools:layout="@layout/fragment_test_schedule" />
+
+    <fragment
+            android:id="@+id/fragmentAddBasalRate"
+            android:name="com.hofstadtchristopher.basal_o_mat.dir_Profil.FragmentAddBasalRate"
+            android:label="@string/label_add_basalrate"
+            tools:layout="@layout/fragment_add_basal_rate">
+        <action
+                android:id="@+id/action_to_navigation_profil"
+                app:destination="@id/navigation_profil" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/fragmentUpdateBasalRate"
+            android:name="com.hofstadtchristopher.basal_o_mat.dir_Profil.FragmentUpdateBasalRate"
+            android:label="@string/label_update_basalrate"
+            tools:layout="@layout/fragment_update_basal_rate">
+        <argument
+                android:name="bRatePos"
+                app:argType="integer" />
+        <action
+                android:id="@+id/action_to_navigation_profil"
+                app:destination="@id/navigation_profil" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/fragmentBloodsugarInput"
+            android:name="com.hofstadtchristopher.basal_o_mat.dir_Test.FragmentBloodsugarInput"
+            android:label="@string/label_bloodsugar_input"
+            tools:layout="@layout/fragment_bloodsugar_input">
+        <action
+                android:id="@+id/action_to_navigation_test"
+                app:destination="@id/navigation_test" />
+        <action
+                android:id="@+id/action_to_fragmentTestResult"
+                app:destination="@id/fragmentTestResult"
+                app:popUpTo="@id/navigation_test" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/fragmentTestResult"
+            android:name="com.hofstadtchristopher.basal_o_mat.dir_Test.FragmentTestResult"
+            android:label="@string/label_result"
+            tools:layout="@layout/fragment_test_result" />
+
 </navigation>

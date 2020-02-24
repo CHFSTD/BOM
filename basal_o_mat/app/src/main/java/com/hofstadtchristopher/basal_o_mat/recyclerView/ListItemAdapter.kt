@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hofstadtchristopher.basal_o_mat.R
 import kotlinx.android.synthetic.main.recyclerview_item_list.view.*
 
-class ListItemAdapter(): RecyclerView.Adapter<ListItemAdapter.ListItemHolder>() {
+class ListItemAdapter : RecyclerView.Adapter<ListItemAdapter.ListItemHolder>() {
 
     private var items = emptyList<ListItem>()
 

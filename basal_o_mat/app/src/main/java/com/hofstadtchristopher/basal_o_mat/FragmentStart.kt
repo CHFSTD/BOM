@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hofstadtchristopher.basal_o_mat.recyclerView.NormItem
 import com.hofstadtchristopher.basal_o_mat.recyclerView.NormItemAdapter
 import com.hofstadtchristopher.basal_o_mat.viewModel.FStartViewModel
 //import androidx.navigation.Navigation
@@ -26,14 +25,14 @@ import kotlinx.android.synthetic.main.fragment_start.*
  */
 class FragmentStart : Fragment() {
 
-    private lateinit var fStartViewModel: FStartViewModel
+    private lateinit var vMdl: FStartViewModel
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        fStartViewModel = ViewModelProvider(this).get(FStartViewModel::class.java)
+        vMdl = ViewModelProvider(this).get(FStartViewModel::class.java)
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_start, container, false)
         recyclerView = view.findViewById(R.id.recyclerview_fStart)
@@ -53,7 +52,7 @@ class FragmentStart : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val adapter = NormItemAdapter(context!!)
-        adapter.setItems(fStartViewModel.recViewitems)
+        adapter.setItems(vMdl.recViewitems)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
     }

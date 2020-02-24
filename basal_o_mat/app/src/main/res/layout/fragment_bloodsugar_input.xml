@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".dir_Test.FragmentBloodsugarInput"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:clickable="true"
+        >
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/halfDefaultMargin"
+            android:text="@string/enter_bloodsugar"
+            android:layout_marginTop="@dimen/DoubleDefaultMargin"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fBLSI_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/bloodsugar_input_message"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/fTest_btn_continue"
+            android:layout_marginStart="@dimen/DoubleDefaultMargin"
+            android:layout_marginEnd="@dimen/DoubleDefaultMargin"
+            android:layout_marginBottom="@dimen/DoubleDefaultMargin"
+            >
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/fTest_btn_continue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_continue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:enabled="false"
+            android:layout_marginBottom="@dimen/fingerReachable"
+            />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

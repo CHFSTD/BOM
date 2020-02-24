@@ -57,8 +57,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.archLifecycleVersion"
     // Coroutines
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
-    // UI
+    // Material Design Components
     implementation "com.google.android.material:material:$rootProject.materialVersion"
     // Testing
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
+    //Material 3rd Party Progress Bar
+    implementation 'me.zhanghai.android.materialprogressbar:library:1.6.1'
 }
