@@ -11,9 +11,9 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import com.hofstadtchristopher.basal_o_mat.R
-import com.hofstadtchristopher.basal_o_mat.room.BasalRate
 import com.hofstadtchristopher.basal_o_mat.viewModel.FProfileViewModel
 import kotlinx.android.synthetic.main.fragment_update_basal_rate.*
 
@@ -22,15 +22,13 @@ import kotlinx.android.synthetic.main.fragment_update_basal_rate.*
  */
 class FragmentUpdateBasalRate : Fragment() {
 
-    private var bRateID: Int? = null
-    private lateinit var fProfileViewModel: FProfileViewModel
-    private lateinit var tmpBasalRate: BasalRate
+    private lateinit var vMdl: FProfileViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        fProfileViewModel = ViewModelProvider(activity!!).get(FProfileViewModel::class.java)
+        vMdl = ViewModelProvider(activity!!).get(FProfileViewModel::class.java)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_update_basal_rate, container, false)
     }
@@ -40,18 +38,18 @@ class FragmentUpdateBasalRate : Fragment() {
 
         arguments?.let {
             //bRateID = FragmentUpdateBasalRateArgs.fromBundle(it).bRateID
-            fProfileViewModel.bRatePos = FragmentUpdateBasalRateArgs.fromBundle(it).bRatePos
-            fProfileViewModel.initProfToBeModified()
+            vMdl.bRatePos = FragmentUpdateBasalRateArgs.fromBundle(it).bRatePos
+            vMdl.initProfToBeModified()
         }
 
-        fUpdateBr_time.text = getString(R.string.fAddBr_time_low, fProfileViewModel.modSelectedHour, fProfileViewModel.modSelectedHour+1)
+        fUpdateBr_time.text = getString(R.string.fAddBr_time_low, vMdl.modSelectedHour, vMdl.modSelectedHour+1)
         setUnit()
-        fUpdateBr_profileNameET.editText!!.setText(fProfileViewModel.modProfilname)
+        fUpdateBr_profileNameET.editText!!.setText(vMdl.modProfilname)
 
         fUpdateBr_profileNameET.editText!!.setOnFocusChangeListener { _, hasFocus ->
             if(!hasFocus) {
                 if (validateProfileName()) {
-                    fProfileViewModel.upldProfilName = fUpdateBr_profileNameET.editText!!.text.toString().trim()
+                    vMdl.upldProfilName = fUpdateBr_profileNameET.editText!!.text.toString().trim()
                     checkEnableSaveBtn()
                 }
                 //hide keyboard when editText lost focus
@@ -82,11 +80,11 @@ class FragmentUpdateBasalRate : Fragment() {
         }
 
         fUpdateBr_btn_minusOne.setOnClickListener {
-            if (fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour] < 1F) {
-                fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour] = 0.0F
+            if (vMdl.modBasalProfile[vMdl.modSelectedHour] < 1F) {
+                vMdl.modBasalProfile[vMdl.modSelectedHour] = 0.0F
                 fUpdateBr_unitDisplay.error = getString(R.string.input_basalunit_to_low)
             } else {
-                fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour]-= 1.0F
+                vMdl.modBasalProfile[vMdl.modSelectedHour]-= 1.0F
                 fUpdateBr_unitDisplay.error = null
                 fUpdateBr_unitDisplay.isErrorEnabled = false
             }
@@ -94,11 +92,11 @@ class FragmentUpdateBasalRate : Fragment() {
         }
 
         fUpdateBr_btn_minusPointOne.setOnClickListener {
-            if (fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour] < 0.10F) {
-                fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour] = 0.0F
+            if (vMdl.modBasalProfile[vMdl.modSelectedHour] < 0.10F) {
+                vMdl.modBasalProfile[vMdl.modSelectedHour] = 0.0F
                 fUpdateBr_unitDisplay.error = getString(R.string.input_basalunit_to_low)
             } else {
-                fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour]-= 0.10F
+                vMdl.modBasalProfile[vMdl.modSelectedHour]-= 0.10F
                 fUpdateBr_unitDisplay.error = null
                 fUpdateBr_unitDisplay.isErrorEnabled = false
             }
@@ -106,11 +104,11 @@ class FragmentUpdateBasalRate : Fragment() {
         }
 
         fUpdateBr_btn_minusPointZeroOne.setOnClickListener {
-            if (fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour] < 0.010F) {
-                fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour] = 0.0F
+            if (vMdl.modBasalProfile[vMdl.modSelectedHour] < 0.010F) {
+                vMdl.modBasalProfile[vMdl.modSelectedHour] = 0.0F
                 fUpdateBr_unitDisplay.error = getString(R.string.input_basalunit_to_low)
             } else {
-                fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour]-= 0.010F
+                vMdl.modBasalProfile[vMdl.modSelectedHour]-= 0.010F
                 fUpdateBr_unitDisplay.error = null
                 fUpdateBr_unitDisplay.isErrorEnabled = false
             }
@@ -118,11 +116,11 @@ class FragmentUpdateBasalRate : Fragment() {
         }
 
         fUpdateBr_btn_plusOne.setOnClickListener {
-            if (fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour] > 3F) {
-                fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour] = 4F
+            if (vMdl.modBasalProfile[vMdl.modSelectedHour] > 3F) {
+                vMdl.modBasalProfile[vMdl.modSelectedHour] = 4F
                 fUpdateBr_unitDisplay.error = getString(R.string.input_basalunit_to_high)
             } else {
-                fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour]+=1.0F
+                vMdl.modBasalProfile[vMdl.modSelectedHour]+=1.0F
                 fUpdateBr_unitDisplay.error = null
                 fUpdateBr_unitDisplay.isErrorEnabled = false
             }
@@ -130,11 +128,11 @@ class FragmentUpdateBasalRate : Fragment() {
         }
 
         fUpdateBr_btn_plusPointOne.setOnClickListener {
-            if (fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour] > 3.9F) {
-                fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour] = 4F
+            if (vMdl.modBasalProfile[vMdl.modSelectedHour] > 3.9F) {
+                vMdl.modBasalProfile[vMdl.modSelectedHour] = 4F
                 fUpdateBr_unitDisplay.error = getString(R.string.input_basalunit_to_high)
             } else {
-                fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour]+=0.10F
+                vMdl.modBasalProfile[vMdl.modSelectedHour]+=0.10F
                 fUpdateBr_unitDisplay.error = null
                 fUpdateBr_unitDisplay.isErrorEnabled = false
             }
@@ -142,11 +140,11 @@ class FragmentUpdateBasalRate : Fragment() {
         }
 
         fUpdateBr_btn_plusPointZeroOne.setOnClickListener {
-            if (fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour] > 3.99F) {
-                fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour] = 4F
+            if (vMdl.modBasalProfile[vMdl.modSelectedHour] > 3.99F) {
+                vMdl.modBasalProfile[vMdl.modSelectedHour] = 4F
                 fUpdateBr_unitDisplay.error = getString(R.string.input_basalunit_to_high)
             } else {
-                fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour]+=0.010F
+                vMdl.modBasalProfile[vMdl.modSelectedHour]+=0.010F
                 fUpdateBr_unitDisplay.error = null
                 fUpdateBr_unitDisplay.isErrorEnabled = false
             }
@@ -154,8 +152,21 @@ class FragmentUpdateBasalRate : Fragment() {
         }
 
         fUpdateBr_btn_saveProfile.setOnClickListener {
-            fProfileViewModel.update(fProfileViewModel.modBasalRate)
+            vMdl.update(vMdl.modBasalRate)
             Navigation.findNavController(it).navigate(FragmentUpdateBasalRateDirections.actionToNavigationProfil())
+        }
+
+        fUpdateBr_btn_deleteProfile.setOnClickListener {
+            MaterialAlertDialogBuilder(context)
+                .setTitle(getString(R.string.profile_delete_question, vMdl.modProfilname))
+                .setMessage(getString(R.string.are_u_sure))
+                .setPositiveButton(getString(R.string.delete)) { _, _ ->
+                    vMdl.delete(vMdl.modBasalRate.id)
+                    Navigation.findNavController(it).navigate(FragmentUpdateBasalRateDirections.actionToNavigationProfil())
+                }
+                .setNegativeButton(getString(R.string.cancel), null)
+                .show()
+
         }
 
     }
@@ -164,7 +175,7 @@ class FragmentUpdateBasalRate : Fragment() {
         val input = fUpdateBr_profileNameET.editText!!.text.toString().trim()
 
         return if (input.isEmpty()) {
-            fUpdateBr_profileNameET.error = "Bitte Profilname eingeben"
+            fUpdateBr_profileNameET.error = getString(R.string.error_profilename)
             false
         } else {
             fUpdateBr_profileNameET.error = null
@@ -174,15 +185,15 @@ class FragmentUpdateBasalRate : Fragment() {
     }
 
     private fun setTime() {
-        val selTime = fProfileViewModel.modSelectedHour
+        val selTime = vMdl.modSelectedHour
         when {
             selTime > 23 -> {
-                fProfileViewModel.modSelectedHour = 0
-                setDisplay(fProfileViewModel.modSelectedHour)
+                vMdl.modSelectedHour = 0
+                setDisplay(vMdl.modSelectedHour)
             }
             selTime < 0 -> {
-                fProfileViewModel.modSelectedHour = 23
-                setDisplay(fProfileViewModel.modSelectedHour)
+                vMdl.modSelectedHour = 23
+                setDisplay(vMdl.modSelectedHour)
             }
             selTime in 0..23 -> {
                 setDisplay(selTime)
@@ -199,18 +210,18 @@ class FragmentUpdateBasalRate : Fragment() {
     }
 
     private fun nextTime() {
-        fProfileViewModel.modSelectedHour++
+        vMdl.modSelectedHour++
         setTime()
     }
 
     private fun prevTime() {
-        fProfileViewModel.modSelectedHour--
+        vMdl.modSelectedHour--
         setTime()
     }
 
     //displays the basalunit
     private fun setUnit() {
-        fUpdateBr_unitTV.text = getString(R.string.number_to_string, fProfileViewModel.modBasalProfile[fProfileViewModel.modSelectedHour])
+        fUpdateBr_unitTV.text = getString(R.string.number_to_string, vMdl.modBasalProfile[vMdl.modSelectedHour])
         checkEnableSaveBtn()
     }
 
@@ -223,7 +234,7 @@ class FragmentUpdateBasalRate : Fragment() {
         if (pNameInput.isEmpty()) {
             return false
         } else {
-            for (el in fProfileViewModel.modBasalProfile) {
+            for (el in vMdl.modBasalProfile) {
                 if (el == 0F) {
                     return false
                 }

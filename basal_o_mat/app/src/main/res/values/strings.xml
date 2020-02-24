@@ -28,5 +28,29 @@
     <string name="btn_plusPointOne">+0.10</string>
     <string name="input_basalunit_to_low">Inputted basal unit can\'t be lower than 0.00</string>
     <string name="input_basalunit_to_high">Inputted basal unit can\'t be higher than 4.00</string>
-    <string name="btn_saveProfile">Save Basalrate Profile</string>
+    <string name="btn_save">save</string>
+    <string name="delete">delete</string>
+    <string name="profile_delete_question">Delete %1$s?</string>
+    <string name="are_u_sure">Do you want to delete the Profile?</string>
+    <string name="cancel">cancel</string>
+    <string name="countDown" translatable="false">%1$02d:%2$02d</string>
+    <string name="profileName">Profilename</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="finish">finish</string>
+    <string name="units">Units:</string>
+    <string name="bloodsugar_input_message">Bloodsugar in mg/dl</string>
+    <string name="btn_continue">continue</string>
+    <string name="enter_bloodsugar">Please enter your measured Bloodsugar (mg/dl)</string>
+    <string name="error_profilename">Please insert profilename</string>
+    <string name="error_bloodsugar">Please insert bloodsugar in mg/dl</string>
+    <string name="label_basalrate_test">Basalrate Test</string>
+    <string name="label_start">Start</string>
+    <string name="label_protocol">Protocols</string>
+    <string name="label_basalrate_profile">Basalrate Profiles</string>
+    <string name="label_more">More</string>
+    <string name="label_bloodsugar_input">Enter Bloodsugar</string>
+    <string name="label_result">Result</string>
+    <string name="label_add_basalrate">Add Basalrate Profile</string>
+    <string name="label_update_basalrate">Update Basalrate</string>
 </resources>

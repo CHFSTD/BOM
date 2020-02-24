@@ -16,6 +16,11 @@ class BomRepository(private val basalRateDao: BasalRateDao) {
         return  bRateList
     }
 
+    fun getBasalRatesOrderedByNames(): LiveData<List<BasalRate>> {
+        bRateList = basalRateDao.getBasalRatesNames()
+        return bRateList
+    }
+
     fun getBasalRate(id: Int): LiveData<List<BasalRate>> {
         return basalRateDao.getBasalRate(id)
     }
@@ -28,5 +33,9 @@ class BomRepository(private val basalRateDao: BasalRateDao) {
     suspend fun delete(id: Int) {
         basalRateDao.delete(id)
         Log.i("RoomDB", "Basalrate with id: ${id} deleted")
+    }
+
+    suspend fun getSize(): Int {
+        return basalRateDao.getSize()
     }
 }

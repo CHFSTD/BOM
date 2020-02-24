@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="defaultMargin">16dp</dimen>
+    <dimen name="DoubleDefaultMargin">32dp</dimen>
+    <dimen name="halfDefaultMargin">8dp</dimen>
+    <dimen name="fingerReachable">64dp</dimen>
+
+</resources>

@@ -12,6 +12,9 @@ interface BasalRateDao {
     @Query("SELECT * from BasalRates ORDER BY ID ASC")
     fun getBasalRates(): LiveData<List<BasalRate>>
 
+    @Query("SELECT * from BasalRates ORDER BY Name ASC")
+    fun getBasalRatesNames(): LiveData<List<BasalRate>>
+
     @Query("SELECT * FROM BasalRates WHERE ID = :id")
     fun getBasalRate(id: Int): LiveData<List<BasalRate>>
 
@@ -23,4 +26,7 @@ interface BasalRateDao {
 
     @Query("DELETE FROM BasalRates")
     suspend fun deleteAll()
+
+    @Query("SELECT COUNT(ID) from BasalRates")
+    suspend fun getSize(): Int
 }
