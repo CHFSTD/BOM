@@ -8,10 +8,11 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(BasalRate::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(BasalRate::class, TestResult::class), version = 1, exportSchema = false)
 abstract class BomDatabase : RoomDatabase() {
 
     abstract fun basalRateDao() : BasalRateDao
+    abstract fun testResultDao(): TestResultDao
 
     private class BomDatabaseCallback(
         private val scope: CoroutineScope
@@ -20,14 +21,14 @@ abstract class BomDatabase : RoomDatabase() {
             super.onCreate(db)
             INSTANCE?.let { database ->
                 scope.launch {
-                    populateDatabase(database.basalRateDao())
+                    populateDatabase(database.basalRateDao(), database.testResultDao())
                 }
             }
         }
 
-        suspend fun populateDatabase(basalRateDao: BasalRateDao) {
-            basalRateDao.deleteAll() //TODO bei weiterem table dessen Dao und deleteAll etc hinzufügen
-
+        suspend fun populateDatabase(basalRateDao: BasalRateDao, testResultDao: TestResultDao) {
+            basalRateDao.deleteAll()
+            testResultDao.deleteAll()
         }
     }
 
@@ -38,7 +39,7 @@ abstract class BomDatabase : RoomDatabase() {
 
         fun getDatabase(
             context: Context,
-            scrope: CoroutineScope
+            scope: CoroutineScope
         ) : BomDatabase {
             val tmpInstance = INSTANCE
             if (tmpInstance != null) {
@@ -50,7 +51,7 @@ abstract class BomDatabase : RoomDatabase() {
                     BomDatabase::class.java,
                     "Basal-O-Mat_Database"
                 )
-                    .addCallback(BomDatabaseCallback(scrope))
+                    .addCallback(BomDatabaseCallback(scope))
                     .build()
 
                 INSTANCE = instance

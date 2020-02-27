@@ -27,7 +27,7 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
     var upldSelectedHour: Int = 0
 
     //stores input (0 <= input <= 4) for basalRate. position in array declare the hour, so [0] is 00:00 o'clock, [1] is 01:00 o'clock and so on.
-    var upldBasalProfile: Array<Float> = Array(24) {index -> 0F} //initialise every value with 0F
+    var upldBasalProfile: Array<Float> = Array(24) {0F} //initialise every value with 0F
 
     /*
     * following variables will be for the updateBasalRate fragment.
@@ -46,7 +46,8 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
 
     init {
         val basalRateDao = BomDatabase.getDatabase(application, viewModelScope).basalRateDao()
-        repository = BomRepository(basalRateDao)    //TODO add testDAO
+        val basalRateTestResultDao = BomDatabase.getDatabase(application, viewModelScope).testResultDao()
+        repository = BomRepository(basalRateDao, basalRateTestResultDao)
         allBasalRates = repository.bRateList
     }
 
@@ -125,8 +126,8 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
     }
 
     private fun refreshAllBasalRates() {
-        if (allBasalRates != repository.getAll()) {
-            allBasalRates = repository.getAll()
+        if (allBasalRates != repository.getAllBRates()) {
+            allBasalRates = repository.getAllBRates()
         }
     }
 
@@ -140,7 +141,7 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun getAll() {
-        allBasalRates = repository.getAll()
+        allBasalRates = repository.getAllBRates()
     }
 
     fun getBasalRate(id: Int): LiveData<List<BasalRate>> {
@@ -154,6 +155,6 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun delete(id: Int) = viewModelScope.launch {
-        repository.delete(id)
+        repository.deleteBRate(id)
     }
 }

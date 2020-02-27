@@ -3,6 +3,7 @@ package com.hofstadtchristopher.basal_o_mat.dir_Test
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import com.hofstadtchristopher.basal_o_mat.R
 import com.hofstadtchristopher.basal_o_mat.viewModel.FTestViewModel
@@ -21,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_bloodsugar_input.*
  */
 class FragmentBloodsugarInput : Fragment() {
     private lateinit var vMdl: FTestViewModel
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,13 +38,48 @@ class FragmentBloodsugarInput : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /*if user entered this fragment and moving to another destination without entering an input,
+        * user will be returned to this fragment, where he left and continuing entering an input.
+        */
+        vMdl.measuredData[vMdl.testProgress] = -1
+
         fTest_btn_continue.setOnClickListener {
-            vMdl.testProgress++
+            vMdl.measuredData[vMdl.testProgress] = fBLSI_input.editText!!.text.toString().toInt()
+
             if (vMdl.isFinished()){
                 vMdl.isTestMode = false
                 Navigation.findNavController(it).navigate(FragmentBloodsugarInputDirections.actionToFragmentTestResult())
             } else {
-                Navigation.findNavController(it).navigate(FragmentBloodsugarInputDirections.actionToNavigationTest())
+                val x = vMdl.measuredData[vMdl.testProgress]
+                //terminate test when bloodsugar is too high or low
+                when {
+                    x > 200 -> {
+                        vMdl.isTestMode = false
+                        MaterialAlertDialogBuilder(context)
+                            .setTitle(getString(R.string.bs_high))
+                            .setMessage(getString(R.string.bs_high_message))
+                            .setNeutralButton(getString(R.string.ok)) { _,_ ->
+                                vMdl.termPos = vMdl.testProgress    //save terminated position
+                                Navigation.findNavController(it).navigate(FragmentBloodsugarInputDirections.actionToFragmentTestResult())
+                            }
+                            .show()
+                    }
+                    x < 65 -> {
+                        vMdl.isTestMode = false
+                        MaterialAlertDialogBuilder(context)
+                            .setTitle(getString(R.string.bs_low))
+                            .setMessage(getString(R.string.bs_low_message))
+                            .setNeutralButton(getString(R.string.ok)) { _,_ ->
+                                vMdl.termPos = vMdl.testProgress    //save terminated position
+                                Navigation.findNavController(it).navigate(FragmentBloodsugarInputDirections.actionToFragmentTestResult())
+                            }
+                            .show()
+                    }
+                    else -> {
+                        vMdl.testProgress++
+                        Navigation.findNavController(it).navigate(FragmentBloodsugarInputDirections.actionToNavigationTest())
+                    }
+                }
             }
         }
 

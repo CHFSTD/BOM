@@ -5,15 +5,17 @@ import android.os.CountDownTimer
 import android.util.Log
 import androidx.lifecycle.*
 import com.hofstadtchristopher.basal_o_mat.room.BasalRate
+import com.hofstadtchristopher.basal_o_mat.room.TestResult
 import com.hofstadtchristopher.basal_o_mat.room.BomDatabase
 import com.hofstadtchristopher.basal_o_mat.room.BomRepository
 import kotlinx.coroutines.launch
+import java.text.DateFormat
 import java.util.*
 
 
 class FTestViewModel(application: Application) : AndroidViewModel(application) {
-    val MAX_TEST_PROGRESS: Int = 3
-    val START_TIME_IN_MILLIS: Long = 6000
+    val MAX_TEST_PROGRESS: Int = 6
+    val START_TIME_IN_MILLIS: Long = 3000
 
     private val repository: BomRepository
     var allBasalRates: LiveData<List<BasalRate>>
@@ -21,11 +23,17 @@ class FTestViewModel(application: Application) : AndroidViewModel(application) {
     var bRateNames = emptyList<BasalRate>()
     var size = 0
     lateinit var chosenBRate: BasalRate
+    var chosenBRatePos: Int = 0
 
 
     var isTestMode: Boolean = false
     var measuredData: Array<Int> = Array(MAX_TEST_PROGRESS+1) {0}
     var testProgress: Int = 0
+    var testResult: Array<Any> = Array(MAX_TEST_PROGRESS) {"UNINITIALIZED"}
+    var termPos: Int = MAX_TEST_PROGRESS+1
+    var hourAtStart: Int = 0
+    var testDate: String = ""
+    lateinit var res: TestResult
 
     lateinit var timer: CountDownTimer
     var timeLeftInMillis: Long = START_TIME_IN_MILLIS
@@ -35,32 +43,71 @@ class FTestViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         val basalRateDao = BomDatabase.getDatabase(application, viewModelScope).basalRateDao()
-        repository = BomRepository(basalRateDao)    //TODO add testDAO
+        val basalRateTestResultDao = BomDatabase.getDatabase(application, viewModelScope).testResultDao()
+        repository = BomRepository(basalRateDao, basalRateTestResultDao)
         allBasalRates = repository.bRateList
 
     }
 
     fun setSize() = viewModelScope.launch {
         size = repository.getSize()
-        Log.i("Size", "Size is $size")
 
+    }
+
+    fun createResult() {
+        res = TestResult(
+            measuredData[0],
+            measuredData[1],
+            measuredData[2],
+            measuredData[3],
+            measuredData[4],
+            measuredData[5],
+            measuredData[6],
+            hourAtStart,
+            testDate,
+            chosenBRate.name
+            )
+        insert(res)
+
+    }
+
+    fun setDateAndTime() {
+        hourAtStart = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        testDate = DateFormat.getDateInstance().format(Calendar.getInstance().time)
     }
 
     fun createSingleChoiceList(): Array<String> {
         val singleChoiceList: ArrayList<String> = ArrayList()
         bRateNames.forEach {
                 bRate -> singleChoiceList.add(bRate.name)
-                        Log.i("ArrayList", "add ${bRate.name}")
         }
-        Log.i("Size", "Size before declaring array is $size")
         val res = Array(size) {""}
-        Log.i("Size", "array size is ${res.size}")
         singleChoiceList.toArray(res)
-        res.forEach { i -> Log.i("String", "Element is $i") }
         return res
     }
 
+    fun resetTest() {
+        measuredData = Array(MAX_TEST_PROGRESS+1) {0}
+        testProgress = 0
+        testResult = Array(MAX_TEST_PROGRESS) {"UNINITIALIZED"}
+        termPos = MAX_TEST_PROGRESS+1
+        hourAtStart = 0
+        testDate = ""
+    }
+
     fun isFinished(): Boolean {
-        return testProgress > MAX_TEST_PROGRESS
+        val res: Boolean
+        if(testProgress >= MAX_TEST_PROGRESS) {
+            testProgress = 0
+            createResult()
+            res = true
+        } else {
+            res = false
+        }
+        return res
+    }
+
+    private fun insert(tResult: TestResult) = viewModelScope.launch {
+        repository.insert(tResult)
     }
 }

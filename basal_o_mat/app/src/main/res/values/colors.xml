@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryBrighter">#8BC34A</color>
-    <color name="colorPrimary">#5A9216</color>
-    <color name="colorPrimaryDark">#5A9216</color>
-    <color name="colorAccent">#FFC107</color>
-    <color name="textPrimary">#212121</color>
-    <color name="textSecondary">#757575</color>
+    <!-- generated with material io color tool -->
+    <color name="primaryColor">#5a9216</color>
+    <color name="primaryLightColor">#8bc34a</color>
+    <color name="primaryDarkColor">#286400</color>
+    <color name="secondaryColor">#ffc107</color>
+    <color name="secondaryLightColor">#fff350</color>
+    <color name="secondaryDarkColor">#c79100</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#000000</color>
+
     <color name="backgroundColor">#ECECEC</color>
     <color name="colorOnBackground">#FFFFFF</color>
+    <color name="trendGood">#8BC34A</color>
+    <color name="trendNotSoGood">#FF6F00</color>
+    <color name="trendBad">#d50000</color>
 </resources>

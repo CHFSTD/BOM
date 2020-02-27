@@ -53,4 +53,14 @@
     <string name="label_result">Result</string>
     <string name="label_add_basalrate">Add Basalrate Profile</string>
     <string name="label_update_basalrate">Update Basalrate</string>
+    <string name="TERMINATION">termination</string>
+    <string name="bs_high">Bloodsugar too high</string>
+    <string name="bs_low">Bloodsugar too low</string>
+    <string name="bs_high_message">Please intake carbohydrates. Test will be terminated</string>
+    <string name="bs_low_message">Please treat yourself with Insulin. Test will be terminated</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="exit">Exit</string>
+    <string name="fTR_label_tv">Testresult to profile %1$s from %2$s</string>
+    <string name="fTR_advice_label">Recommanded adjustment:</string>
+    <string name="fTR_recyclerView_clock">%1$d:00 O\'Clock</string>
 </resources>

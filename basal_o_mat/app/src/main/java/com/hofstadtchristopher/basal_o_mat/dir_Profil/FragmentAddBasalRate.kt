@@ -50,7 +50,7 @@ class FragmentAddBasalRate : Fragment() {
             }
         }
 
-        fAddBr_profileNameET.editText!!.setOnEditorActionListener { v, i, keyEvent ->
+        fAddBr_profileNameET.editText!!.setOnEditorActionListener { v, i, _ ->
             if(i == EditorInfo.IME_ACTION_DONE) {
                 v.clearFocus()
             }

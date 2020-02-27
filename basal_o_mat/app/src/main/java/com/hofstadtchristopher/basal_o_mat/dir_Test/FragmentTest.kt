@@ -11,10 +11,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.hofstadtchristopher.basal_o_mat.R
 import com.hofstadtchristopher.basal_o_mat.viewModel.FTestViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_test.*
+import java.util.*
 
 class FragmentTest : Fragment() {
 
@@ -47,32 +50,34 @@ class FragmentTest : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         togglDefault()
-        checkTimerStart()
-
-
+        if (vMdl.measuredData[vMdl.testProgress] == -1) {
+            Navigation.findNavController(view).navigate(FragmentTestDirections.actionToFragmentBloodsugarInput())
+        } else {
+            checkTimerStart()
+        }
 
         fTest_Btn_js.setOnClickListener {
             val choiceArr: Array<String> = vMdl.createSingleChoiceList()
-            choiceArr.forEach { Log.i("Array", "Element is $it") }
             MaterialAlertDialogBuilder(context)
                 .setTitle("test")
                 .setSingleChoiceItems(choiceArr, -1){
                         _, i ->
+                        vMdl.chosenBRatePos = i
                         vMdl.chosenBRate = vMdl.bRateNames[i]
-                        Log.i("Choice", "Choice is ${choiceArr[i]}")
-                        Log.i("Choice", "Chosen bRate is ${vMdl.chosenBRate}")
                 }
                 .setPositiveButton(getString(R.string.btn_continue)) { _, _ ->
                     Navigation.findNavController(it).navigate(FragmentTestDirections.actionToFragmentBloodsugarInput())
                     vMdl.isTestMode = true
                     togglDefault()
+                    vMdl.setDateAndTime()
                 }
                 .setNegativeButton(getString(R.string.cancel), null)
                 .show()
         }
 
         fTest_Btn_scdl.setOnClickListener {
-            vMdl.createSingleChoiceList()
+            //vMdl.createSingleChoiceList()
+            Log.i("hourAtStart", "hourAtStart is ${vMdl.hourAtStart}")
         }
 
         fTest_Btn_test.setOnClickListener {
@@ -92,8 +97,9 @@ class FragmentTest : Fragment() {
     }
 
     fun checkTimerStart() {
-        if(vMdl.isTestMode) {
-            startTimer()
+        if(vMdl.isTestMode && !vMdl.isTimerRunning) {
+                vMdl.isTimerRunning = true
+                startTimer()
         }
     }
 

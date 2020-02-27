@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorOnBackground"
+        android:layout_marginBottom="4dp"
+        >
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/rVR_indicator"
+            android:layout_width="48dp"
+            android:layout_height="50dp"
+            android:background="@drawable/shape_rectangle"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/rVR_trend"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/ic_arrow_right_24px"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/defaultMargin"
+            />
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/rVR_measurement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="100 mg/dl"
+            android:textSize="28sp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/defaultMargin"
+            />
+
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/rVR_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="8:00 Uhr"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/DoubleDefaultMargin"
+            />
+
+</LinearLayout>
