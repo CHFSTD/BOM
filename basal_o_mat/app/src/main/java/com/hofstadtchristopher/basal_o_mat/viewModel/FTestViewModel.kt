@@ -15,7 +15,7 @@ import java.util.*
 
 class FTestViewModel(application: Application) : AndroidViewModel(application) {
     val MAX_TEST_PROGRESS: Int = 6
-    val START_TIME_IN_MILLIS: Long = 3000
+    val START_TIME_IN_MILLIS: Long = 3000 //Demo modus = 3000, Normal is 3600000 for 1 Hour
 
     private val repository: BomRepository
     var allBasalRates: LiveData<List<BasalRate>>
