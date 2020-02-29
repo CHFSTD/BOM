@@ -16,11 +16,10 @@ import com.hofstadtchristopher.basal_o_mat.room.TestResult
 import com.hofstadtchristopher.basal_o_mat.util.TestResultHelper
 import kotlinx.android.synthetic.main.recyclerview_item_result.view.*
 
-class ResultItemAdapter(var tResult: TestResult, context: Context) : RecyclerView.Adapter<ResultItemAdapter.ResultItemHolder>() {
+class ResultItemAdapter(var tResult: TestResult, private var context: Context) : RecyclerView.Adapter<ResultItemAdapter.ResultItemHolder>() {
 
     //private var helper: TestResultHelper = TestResultHelper(tResult)
     private var measItems : Array<Int> = tResult.measuredData //helper.measuredData
-    private var context: Context = context
 
     inner class ResultItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val indicator: ImageView = itemView.rVR_indicator
@@ -39,12 +38,12 @@ class ResultItemAdapter(var tResult: TestResult, context: Context) : RecyclerVie
     override fun onBindViewHolder(holder: ResultItemHolder, position: Int) {
         val current = measItems[position]
         if (position == 0) {
-            holder.measurement.text = current.toString()
+            holder.measurement.text = context.getString(R.string.measurement_text, current)
             holder.time.text = context.getString(R.string.fTR_recyclerView_clock, tResult.hourAtStart + position)//(tResult.hourAtStart + position).toString()
             holder.indicator.setBackgroundResource(R.drawable.trend_good)
             holder.trend.setBackgroundResource(tResult.trends[position])//holder.trend.setBackgroundResource(helper.trends[position])
         } else {
-            holder.measurement.text = current.toString()
+            holder.measurement.text = context.getString(R.string.measurement_text, current)
             holder.time.text = context.getString(R.string.fTR_recyclerView_clock, tResult.hourAtStart + position) //(tResult.hourAtStart + position).toString()
             holder.indicator.setBackgroundResource(tResult.trendColor[position-1])
             holder.trend.setBackgroundResource(tResult.trends[position-1])

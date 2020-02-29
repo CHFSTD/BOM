@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import kotlin.math.roundToInt
 
 /**
  *  Basalrate Data Class and room entity which contains the insulin dose of each hour,
@@ -13,76 +14,76 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "BasalRates")
 data class BasalRate(
     @ColumnInfo(name = "00")
-    var rate00: Float = 0F,
+    var rate00: Double = 0.0,
 
     @ColumnInfo(name = "01")
-    var rate01: Float = 0F,
+    var rate01: Double = 0.0,
 
     @ColumnInfo(name = "02")
-    var rate02: Float = 0F,
+    var rate02: Double = 0.0,
 
     @ColumnInfo(name = "03")
-    var rate03: Float = 0F,
+    var rate03: Double = 0.0,
 
     @ColumnInfo(name = "04")
-    var rate04: Float = 0F,
+    var rate04: Double = 0.0,
 
     @ColumnInfo(name = "05")
-    var rate05: Float = 0F,
+    var rate05: Double = 0.0,
 
     @ColumnInfo(name = "06")
-    var rate06: Float = 0F,
+    var rate06: Double = 0.0,
 
     @ColumnInfo(name = "07")
-    var rate07: Float = 0F,
+    var rate07: Double = 0.0,
 
     @ColumnInfo(name = "08")
-    var rate08: Float = 0F,
+    var rate08: Double = 0.0,
 
     @ColumnInfo(name = "09")
-    var rate09: Float = 0F,
+    var rate09: Double = 0.0,
 
     @ColumnInfo(name = "10")
-    var rate10: Float = 0F,
+    var rate10: Double = 0.0,
 
     @ColumnInfo(name = "11")
-    var rate11: Float = 0F,
+    var rate11: Double = 0.0,
 
     @ColumnInfo(name = "12")
-    var rate12: Float = 0F,
+    var rate12: Double = 0.0,
 
     @ColumnInfo(name = "13")
-    var rate13: Float = 0F,
+    var rate13: Double = 0.0,
 
     @ColumnInfo(name = "14")
-    var rate14: Float = 0F,
+    var rate14: Double = 0.0,
 
     @ColumnInfo(name = "15")
-    var rate15: Float = 0F,
+    var rate15: Double = 0.0,
 
     @ColumnInfo(name = "16")
-    var rate16: Float = 0F,
+    var rate16: Double = 0.0,
 
     @ColumnInfo(name = "17")
-    var rate17: Float = 0F,
+    var rate17: Double = 0.0,
 
     @ColumnInfo(name = "18")
-    var rate18: Float = 0F,
+    var rate18: Double = 0.0,
 
     @ColumnInfo(name = "19")
-    var rate19: Float = 0F,
+    var rate19: Double = 0.0,
 
     @ColumnInfo(name = "20")
-    var rate20: Float = 0F,
+    var rate20: Double = 0.0,
 
     @ColumnInfo(name = "21")
-    var rate21: Float = 0F,
+    var rate21: Double = 0.0,
 
     @ColumnInfo(name = "22")
-    var rate22: Float = 0F,
+    var rate22: Double = 0.0,
 
     @ColumnInfo(name = "23")
-    var rate23: Float = 0F,
+    var rate23: Double = 0.0,
 
     @ColumnInfo(name = "Name")
     val name: String,
@@ -95,7 +96,7 @@ data class BasalRate(
     @ColumnInfo(name = "ID")
     var id: Int = 0
 
-    fun setRate(time: Int, value: Float) {
+    fun setRate(time: Int, value: Double) {
         when(time) {
             0 ->    rate00 = value
             1 ->    rate01 = value
@@ -124,8 +125,39 @@ data class BasalRate(
         }
     }
 
-    fun dayRate(): Float {
-        return (rate00
+    fun getRate(time: Int): Double {
+        var res = 0.0
+        when(time) {
+            0 ->    res = rate00
+            1 ->    res = rate01
+            2 ->    res = rate02
+            3 ->    res = rate03
+            4 ->    res = rate04
+            5 ->    res = rate05
+            6 ->    res = rate06
+            7 ->    res = rate07
+            8 ->    res = rate08
+            9 ->    res = rate09
+            10 ->   res = rate10
+            11 ->   res = rate11
+            12 ->   res = rate12
+            13 ->   res = rate13
+            14 ->   res = rate14
+            15 ->   res = rate15
+            16 ->   res = rate16
+            17 ->   res = rate17
+            18 ->   res = rate18
+            19 ->   res = rate19
+            20 ->   res = rate20
+            21 ->   res = rate21
+            22 ->   res = rate22
+            23 ->   res = rate23
+        }
+        return res
+    }
+
+    fun dayRate(): Double {
+        val sum: Double = (rate00
                 + rate01
                 + rate02
                 + rate03
@@ -149,5 +181,7 @@ data class BasalRate(
                 + rate21
                 + rate22
                 + rate23)
+        //round to 3 decimal places
+        return (sum * 1000.0).roundToInt() / 1000.0
     }
 }

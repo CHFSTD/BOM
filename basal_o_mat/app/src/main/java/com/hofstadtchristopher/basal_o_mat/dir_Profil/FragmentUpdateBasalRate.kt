@@ -80,11 +80,11 @@ class FragmentUpdateBasalRate : Fragment() {
         }
 
         fUpdateBr_btn_minusOne.setOnClickListener {
-            if (vMdl.modBasalProfile[vMdl.modSelectedHour] < 1F) {
-                vMdl.modBasalProfile[vMdl.modSelectedHour] = 0.0F
+            if (vMdl.modBasalProfile[vMdl.modSelectedHour] < 1.0) {
+                vMdl.modBasalProfile[vMdl.modSelectedHour] = 0.0
                 fUpdateBr_unitDisplay.error = getString(R.string.input_basalunit_to_low)
             } else {
-                vMdl.modBasalProfile[vMdl.modSelectedHour]-= 1.0F
+                vMdl.modBasalProfile[vMdl.modSelectedHour]-= 1.0
                 fUpdateBr_unitDisplay.error = null
                 fUpdateBr_unitDisplay.isErrorEnabled = false
             }
@@ -92,11 +92,11 @@ class FragmentUpdateBasalRate : Fragment() {
         }
 
         fUpdateBr_btn_minusPointOne.setOnClickListener {
-            if (vMdl.modBasalProfile[vMdl.modSelectedHour] < 0.10F) {
-                vMdl.modBasalProfile[vMdl.modSelectedHour] = 0.0F
+            if (vMdl.modBasalProfile[vMdl.modSelectedHour] < 0.10) {
+                vMdl.modBasalProfile[vMdl.modSelectedHour] = 0.0
                 fUpdateBr_unitDisplay.error = getString(R.string.input_basalunit_to_low)
             } else {
-                vMdl.modBasalProfile[vMdl.modSelectedHour]-= 0.10F
+                vMdl.modBasalProfile[vMdl.modSelectedHour]-= 0.10
                 fUpdateBr_unitDisplay.error = null
                 fUpdateBr_unitDisplay.isErrorEnabled = false
             }
@@ -104,11 +104,11 @@ class FragmentUpdateBasalRate : Fragment() {
         }
 
         fUpdateBr_btn_minusPointZeroOne.setOnClickListener {
-            if (vMdl.modBasalProfile[vMdl.modSelectedHour] < 0.010F) {
-                vMdl.modBasalProfile[vMdl.modSelectedHour] = 0.0F
+            if (vMdl.modBasalProfile[vMdl.modSelectedHour] < 0.010) {
+                vMdl.modBasalProfile[vMdl.modSelectedHour] = 0.0
                 fUpdateBr_unitDisplay.error = getString(R.string.input_basalunit_to_low)
             } else {
-                vMdl.modBasalProfile[vMdl.modSelectedHour]-= 0.010F
+                vMdl.modBasalProfile[vMdl.modSelectedHour]-= 0.010
                 fUpdateBr_unitDisplay.error = null
                 fUpdateBr_unitDisplay.isErrorEnabled = false
             }
@@ -116,11 +116,11 @@ class FragmentUpdateBasalRate : Fragment() {
         }
 
         fUpdateBr_btn_plusOne.setOnClickListener {
-            if (vMdl.modBasalProfile[vMdl.modSelectedHour] > 3F) {
-                vMdl.modBasalProfile[vMdl.modSelectedHour] = 4F
+            if (vMdl.modBasalProfile[vMdl.modSelectedHour] > 3.0) {
+                vMdl.modBasalProfile[vMdl.modSelectedHour] = 4.0
                 fUpdateBr_unitDisplay.error = getString(R.string.input_basalunit_to_high)
             } else {
-                vMdl.modBasalProfile[vMdl.modSelectedHour]+=1.0F
+                vMdl.modBasalProfile[vMdl.modSelectedHour]+=1.0
                 fUpdateBr_unitDisplay.error = null
                 fUpdateBr_unitDisplay.isErrorEnabled = false
             }
@@ -128,11 +128,11 @@ class FragmentUpdateBasalRate : Fragment() {
         }
 
         fUpdateBr_btn_plusPointOne.setOnClickListener {
-            if (vMdl.modBasalProfile[vMdl.modSelectedHour] > 3.9F) {
-                vMdl.modBasalProfile[vMdl.modSelectedHour] = 4F
+            if (vMdl.modBasalProfile[vMdl.modSelectedHour] > 3.9) {
+                vMdl.modBasalProfile[vMdl.modSelectedHour] = 4.0
                 fUpdateBr_unitDisplay.error = getString(R.string.input_basalunit_to_high)
             } else {
-                vMdl.modBasalProfile[vMdl.modSelectedHour]+=0.10F
+                vMdl.modBasalProfile[vMdl.modSelectedHour]+=0.10
                 fUpdateBr_unitDisplay.error = null
                 fUpdateBr_unitDisplay.isErrorEnabled = false
             }
@@ -141,10 +141,10 @@ class FragmentUpdateBasalRate : Fragment() {
 
         fUpdateBr_btn_plusPointZeroOne.setOnClickListener {
             if (vMdl.modBasalProfile[vMdl.modSelectedHour] > 3.99F) {
-                vMdl.modBasalProfile[vMdl.modSelectedHour] = 4F
+                vMdl.modBasalProfile[vMdl.modSelectedHour] = 4.0
                 fUpdateBr_unitDisplay.error = getString(R.string.input_basalunit_to_high)
             } else {
-                vMdl.modBasalProfile[vMdl.modSelectedHour]+=0.010F
+                vMdl.modBasalProfile[vMdl.modSelectedHour]+=0.010
                 fUpdateBr_unitDisplay.error = null
                 fUpdateBr_unitDisplay.isErrorEnabled = false
             }
@@ -235,7 +235,7 @@ class FragmentUpdateBasalRate : Fragment() {
             return false
         } else {
             for (el in vMdl.modBasalProfile) {
-                if (el == 0F) {
+                if (el == 0.0) {
                     return false
                 }
             }

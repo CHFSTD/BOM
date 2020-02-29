@@ -4,5 +4,6 @@
     <dimen name="DoubleDefaultMargin">32dp</dimen>
     <dimen name="halfDefaultMargin">8dp</dimen>
     <dimen name="fingerReachable">64dp</dimen>
+    <dimen name="cornerRadius">15dp</dimen>
 
 </resources>

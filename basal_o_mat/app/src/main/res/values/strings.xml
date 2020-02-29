@@ -7,7 +7,6 @@
     <string name="title_protocol">Protokoll</string>
     <string name="title_profile">Profil</string>
     <string name="title_more">Mehr</string>
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="bsrtF_first">Möchten Sie den Basalraten Test jetzt starten oder einen Zeitpunkt für den Test planen?</string>
     <string name="bsrtF_btn_js">Jetzt starten</string>
@@ -62,5 +61,13 @@
     <string name="exit">Exit</string>
     <string name="fTR_label_tv">Testresult to profile %1$s from %2$s</string>
     <string name="fTR_advice_label">Recommanded adjustment:</string>
-    <string name="fTR_recyclerView_clock">%1$d:00 O\'Clock</string>
+    <string name="fTR_recyclerView_clock">%1$02d:00 O\'Clock</string>
+    <string name="measurement_text" translatable="false">%1$d mg/dl</string>
+    <string name="adjustment_text">Adjust basal unit at %1$02d:00 o\'clock with value %2$f to %3$f.\n</string>
+    <string name="choose_profile_title">Choose Profile</string>
+    <string name="profile_updated">updated  Basalrate profile  %1$s</string>
+    <string name="result_please_note">Please note: \nRepeat the test at least once again in the near future.</string>
+    <string name="btn_delete_testresult">delete testresult</string>
+    <string name="result_delete_question">Delete Result?</string>
+    <string name="result_are_u_sure">Do you want to delete the result?</string>
 </resources>

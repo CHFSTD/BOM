@@ -72,11 +72,11 @@ class FragmentAddBasalRate : Fragment() {
         }
 
         fAddBr_btn_minusOne.setOnClickListener {
-            if (vMdl.upldBasalProfile[vMdl.upldSelectedHour] < 1F) {
-                vMdl.upldBasalProfile[vMdl.upldSelectedHour] = 0.0F
+            if (vMdl.upldBasalProfile[vMdl.upldSelectedHour] < 1.0) {
+                vMdl.upldBasalProfile[vMdl.upldSelectedHour] = 0.0
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_low)
             } else {
-                vMdl.upldBasalProfile[vMdl.upldSelectedHour]-= 1.0F
+                vMdl.upldBasalProfile[vMdl.upldSelectedHour]-= 1.0
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
@@ -84,11 +84,11 @@ class FragmentAddBasalRate : Fragment() {
         }
 
         fAddBr_btn_minusPointOne.setOnClickListener {
-            if (vMdl.upldBasalProfile[vMdl.upldSelectedHour] < 0.10F) {
-                vMdl.upldBasalProfile[vMdl.upldSelectedHour] = 0.0F
+            if (vMdl.upldBasalProfile[vMdl.upldSelectedHour] < 0.10) {
+                vMdl.upldBasalProfile[vMdl.upldSelectedHour] = 0.0
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_low)
             } else {
-                vMdl.upldBasalProfile[vMdl.upldSelectedHour]-= 0.10F
+                vMdl.upldBasalProfile[vMdl.upldSelectedHour]-= 0.10
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
@@ -96,11 +96,11 @@ class FragmentAddBasalRate : Fragment() {
         }
 
         fAddBr_btn_minusPointZeroOne.setOnClickListener {
-            if (vMdl.upldBasalProfile[vMdl.upldSelectedHour] < 0.010F) {
-                vMdl.upldBasalProfile[vMdl.upldSelectedHour] = 0.0F
+            if (vMdl.upldBasalProfile[vMdl.upldSelectedHour] < 0.010) {
+                vMdl.upldBasalProfile[vMdl.upldSelectedHour] = 0.0
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_low)
             } else {
-                vMdl.upldBasalProfile[vMdl.upldSelectedHour]-= 0.010F
+                vMdl.upldBasalProfile[vMdl.upldSelectedHour]-= 0.010
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
@@ -108,11 +108,11 @@ class FragmentAddBasalRate : Fragment() {
         }
 
         fAddBr_btn_plusOne.setOnClickListener {
-            if (vMdl.upldBasalProfile[vMdl.upldSelectedHour] > 3F) {
-                vMdl.upldBasalProfile[vMdl.upldSelectedHour] = 4F
+            if (vMdl.upldBasalProfile[vMdl.upldSelectedHour] > 3.0) {
+                vMdl.upldBasalProfile[vMdl.upldSelectedHour] = 4.0
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_high)
             } else {
-                vMdl.upldBasalProfile[vMdl.upldSelectedHour]+=1.0F
+                vMdl.upldBasalProfile[vMdl.upldSelectedHour]+=1.0
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
@@ -120,11 +120,11 @@ class FragmentAddBasalRate : Fragment() {
         }
 
         fAddBr_btn_plusPointOne.setOnClickListener {
-            if (vMdl.upldBasalProfile[vMdl.upldSelectedHour] > 3.9F) {
-                vMdl.upldBasalProfile[vMdl.upldSelectedHour] = 4F
+            if (vMdl.upldBasalProfile[vMdl.upldSelectedHour] > 3.9) {
+                vMdl.upldBasalProfile[vMdl.upldSelectedHour] = 4.0
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_high)
             } else {
-                vMdl.upldBasalProfile[vMdl.upldSelectedHour]+=0.10F
+                vMdl.upldBasalProfile[vMdl.upldSelectedHour]+=0.10
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
@@ -132,11 +132,11 @@ class FragmentAddBasalRate : Fragment() {
         }
 
         fAddBr_btn_plusPointZeroOne.setOnClickListener {
-            if (vMdl.upldBasalProfile[vMdl.upldSelectedHour] > 3.99F) {
-                vMdl.upldBasalProfile[vMdl.upldSelectedHour] = 4F
+            if (vMdl.upldBasalProfile[vMdl.upldSelectedHour] > 3.99) {
+                vMdl.upldBasalProfile[vMdl.upldSelectedHour] = 4.0
                 fAddBr_unitDisplay.error = getString(R.string.input_basalunit_to_high)
             } else {
-                vMdl.upldBasalProfile[vMdl.upldSelectedHour]+=0.010F
+                vMdl.upldBasalProfile[vMdl.upldSelectedHour]+=0.010
                 fAddBr_unitDisplay.error = null
                 fAddBr_unitDisplay.isErrorEnabled = false
             }
@@ -210,7 +210,7 @@ class FragmentAddBasalRate : Fragment() {
     //this method copies the previous basalunit to the next if the next unit is empty (equal to 0.00) and the previous is not empty
     private fun setUnitForBtnNext() {
         val pos = vMdl.upldSelectedHour
-        if(vMdl.upldBasalProfile[pos] == 0F) {
+        if(vMdl.upldBasalProfile[pos] == 0.0) {
             if(pos == 0) {
                 fAddBr_unitTV.text = getString(R.string.number_to_string, vMdl.upldBasalProfile[pos+23])
                 vMdl.upldBasalProfile[pos]=vMdl.upldBasalProfile[pos+23]
@@ -234,7 +234,7 @@ class FragmentAddBasalRate : Fragment() {
             return false
         } else {
             for (el in vMdl.upldBasalProfile) {
-                if (el == 0F) {
+                if (el == 0.0) {
                     return false
                 }
             }

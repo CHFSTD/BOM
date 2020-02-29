@@ -67,6 +67,7 @@ class FTestViewModel(application: Application) : AndroidViewModel(application) {
             testDate,
             chosenBRate.name
             )
+        res.setBasalRate(chosenBRate)
         insert(res)
 
     }
@@ -109,5 +110,9 @@ class FTestViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun insert(tResult: TestResult) = viewModelScope.launch {
         repository.insert(tResult)
+    }
+
+    fun update(bRate: BasalRate) = viewModelScope.launch {
+        repository.update(bRate)
     }
 }

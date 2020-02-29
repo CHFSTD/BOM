@@ -27,7 +27,7 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
     var upldSelectedHour: Int = 0
 
     //stores input (0 <= input <= 4) for basalRate. position in array declare the hour, so [0] is 00:00 o'clock, [1] is 01:00 o'clock and so on.
-    var upldBasalProfile: Array<Float> = Array(24) {0F} //initialise every value with 0F
+    var upldBasalProfile: Array<Double> = Array(24) {0.0} //initialise every value with 0F
 
     /*
     * following variables will be for the updateBasalRate fragment.
@@ -37,7 +37,7 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
 
     var modSelectedHour: Int = 0
 
-    lateinit var modBasalProfile: Array<Float>
+    lateinit var modBasalProfile: Array<Double>
 
     lateinit var modBasalRate: BasalRate
 
@@ -54,7 +54,7 @@ class FProfileViewModel(application: Application) : AndroidViewModel(application
     private fun resetTmp() {
         upldProfilName = ""
         upldSelectedHour = 0
-        upldBasalProfile.forEachIndexed { index, _ -> upldBasalProfile[index] = 0F }
+        upldBasalProfile.forEachIndexed { index, _ -> upldBasalProfile[index] = 0.0 }
     }
 
     //uploads basalrate profile to database

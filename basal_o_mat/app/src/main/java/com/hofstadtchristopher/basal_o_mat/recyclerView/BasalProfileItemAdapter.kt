@@ -27,13 +27,11 @@ class BasalProfileItemAdapter : RecyclerView.Adapter<BasalProfileItemAdapter.Bas
         val dayRate: TextView = itemView.rVProf_dayDose
 
         init {
-            itemView.setOnClickListener(object: View.OnClickListener{
-                override fun onClick(p0: View?) {
-                    if (listener != null && adapterPosition != RecyclerView.NO_POSITION) {
-                        listener!!.onItemClick(adapterPosition)
-                    }
+            itemView.setOnClickListener {
+                if (listener != null && adapterPosition != RecyclerView.NO_POSITION) {
+                    listener!!.onItemClick(adapterPosition)
                 }
-            })
+            }
         }
     }
 

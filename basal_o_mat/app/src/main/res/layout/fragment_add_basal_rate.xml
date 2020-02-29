@@ -12,7 +12,7 @@
         >
 
     <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/fAddBr_title"
             android:text="Bitte geben Sie einen Profilnamen ein und legen Sie die Basalraten Werte fest"
@@ -21,7 +21,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/graph_placeholder"
             android:layout_marginTop="@dimen/defaultMargin"
+            android:layout_marginStart="@dimen/defaultMargin"
+            android:layout_marginEnd="@dimen/defaultMargin"
+            android:paddingTop="@dimen/halfDefaultMargin"
+            android:paddingBottom="@dimen/halfDefaultMargin"
             android:textAlignment="center"
+            android:background="@drawable/background_round_corner"
     />
 
     <RelativeLayout
@@ -35,13 +40,27 @@
 
     </RelativeLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fAddBr_profileNameSection"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/graph_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/defaultMargin"
+            android:layout_marginEnd="@dimen/defaultMargin"
+            android:paddingTop="@dimen/defaultMargin"
+            android:paddingBottom="@dimen/halfDefaultMargin"
+            android:background="@drawable/background_round_corner"
+            >
+
         <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/fAddBr_profileNameET"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/profileName"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/graph_placeholder"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/fAddBr_timeSection"
                 android:layout_marginStart="@dimen/defaultMargin"
@@ -60,7 +79,7 @@
 
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/fAddBr_timeSection"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -69,7 +88,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fAddBr_profileNameET"
 
-            >
+                >
 
             <com.google.android.material.button.MaterialButton
                     android:id="@+id/fAddBr_btn_prev"
@@ -80,7 +99,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                />
+                    />
 
             <TextView
                     android:id="@+id/fAddBr_time"
@@ -94,7 +113,7 @@
                     app:layout_constraintEnd_toStartOf="@id/fAddBr_btn_next"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                />
+                    />
 
             <com.google.android.material.button.MaterialButton
                     android:id="@+id/fAddBr_btn_next"
@@ -105,19 +124,23 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-            />
+                    />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fAddBr_unitSection"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/fAddBr_timeSection"
+            app:layout_constraintTop_toBottomOf="@id/fAddBr_profileNameSection"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-
+            android:background="@drawable/background_round_corner"
             >
 
         <com.google.android.material.button.MaterialButton

@@ -1,6 +1,8 @@
 package com.hofstadtchristopher.basal_o_mat.dir_Test
 
 
+import android.content.DialogInterface
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,8 +10,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import com.hofstadtchristopher.basal_o_mat.R
 import com.hofstadtchristopher.basal_o_mat.recyclerView.ResultItemAdapter
@@ -38,12 +42,25 @@ class FragmentTestResult : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         fTR_label_tv.text = getString(R.string.fTR_label_tv, vMdl.chosenBRate.name, vMdl.testDate)
+        fTR_advice_text.text = vMdl.res.recommendation
+
+        if(vMdl.res.recommendation == "Keine Korrektur nötig, Basalrate ist OK"
+            || vMdl.res.recommendation == "No need for adjustments, Basalrate is OK") {
+            fTR_result_note.visibility= View.GONE
+        }
 
         fTR_btn_exit.setOnClickListener {
-            vMdl.measuredData.forEachIndexed {
-                    index, i ->
-                        Log.i("measuredData", "measuredData at pos $index is $i")
-            }
+            Navigation.findNavController(it).navigate(FragmentTestResultDirections.actionToNavigationStart())
+        }
+
+        fTR_btn_update_prof.setOnClickListener {
+            vMdl.update(vMdl.res.adjustedRate)
+            MaterialAlertDialogBuilder(context)
+                .setMessage(getString(R.string.profile_updated, vMdl.chosenBRate.name))
+                .setNeutralButton(getString(R.string.ok)) { _, _ ->
+                    Navigation.findNavController(it).navigate(FragmentTestResultDirections.actionToNavigationStart())
+                }
+                .show()
         }
     }
 
@@ -53,6 +70,8 @@ class FragmentTestResult : Fragment() {
         val adapter = ResultItemAdapter(vMdl.res, context!!)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
+
+
     }
 
 

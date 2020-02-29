@@ -59,9 +59,8 @@ class FragmentTest : Fragment() {
         fTest_Btn_js.setOnClickListener {
             val choiceArr: Array<String> = vMdl.createSingleChoiceList()
             MaterialAlertDialogBuilder(context)
-                .setTitle("test")
-                .setSingleChoiceItems(choiceArr, -1){
-                        _, i ->
+                .setTitle(getString(R.string.choose_profile_title))
+                .setSingleChoiceItems(choiceArr, -1){ _, i ->
                         vMdl.chosenBRatePos = i
                         vMdl.chosenBRate = vMdl.bRateNames[i]
                 }
