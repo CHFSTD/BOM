@@ -74,14 +74,6 @@ class FragmentTest : Fragment() {
                 .show()
         }
 
-        fTest_Btn_scdl.setOnClickListener {
-            //vMdl.createSingleChoiceList()
-            Log.i("hourAtStart", "hourAtStart is ${vMdl.hourAtStart}")
-        }
-
-        fTest_Btn_test.setOnClickListener {
-            startTimer()
-        }
     }
 
     fun togglDefault() {

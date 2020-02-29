@@ -20,13 +20,18 @@
             >
         <TextView
                 android:id="@+id/fTest_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/bsrtF_first"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/background_round_corner"
+                android:layout_marginStart="@dimen/defaultMargin"
+                android:layout_marginEnd="@dimen/defaultMargin"
+                android:padding="15dp"
+                />
 
         <Button
                 android:id="@+id/fTest_Btn_js"
@@ -36,19 +41,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/fTest_tv"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/fTest_Btn_scdl" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        <Button
-                android:id="@+id/fTest_Btn_scdl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/bsrtF_btn_scdl"
-                app:layout_constraintTop_toBottomOf="@+id/fTest_tv"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/fTest_Btn_js"
-                app:layout_constraintEnd_toEndOf="parent"
-
-                />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,19 +83,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/fTest_Btn_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/default_string"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fTest_progressBar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-            />
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

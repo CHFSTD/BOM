@@ -9,7 +9,7 @@
     <string name="title_start">Start</string>
     <string name="title_test">Test</string>
     <string name="bsrtF_first">Möchten Sie den Basalraten Test jetzt starten oder einen Zeitpunkt für den Test planen?</string>
-    <string name="bsrtF_btn_js">Jetzt starten</string>
+    <string name="bsrtF_btn_js">Test starten</string>
     <string name="bsrtF_btn_scdl">Zeitpunkt festlegen</string>
     <string name="fAddBr_time_low">0%1$d:00 &#8211; 0%2$d:00 Uhr</string>
     <string name="fAddBr_time_nine">0%1$d:00 &#8211; %2$d:00 Uhr</string>

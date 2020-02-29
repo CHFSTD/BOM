@@ -39,15 +39,6 @@ class FragmentStart : Fragment() {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        fStart_btn_test.setOnClickListener {
-            Navigation.findNavController(it).navigate(FragmentStartDirections.actionToNavigationTest())
-        }
-
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
