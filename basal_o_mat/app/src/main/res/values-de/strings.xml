@@ -46,4 +46,20 @@
     <string name="label_result">Ergebnis</string>
     <string name="label_add_basalrate">Basalraten Profil hinzufügen</string>
     <string name="label_update_basalrate">Basalrate aktualisieren</string>
+    <string name="TERMINATION">Abbruch</string>
+    <string name="bs_high">Blutzucker zu hoch</string>
+    <string name="bs_low">Blutzucker zu tief</string>
+    <string name="bs_high_message">Bitte nehmen sie Kohlenhydrate zu sich, der Test wird abgebrochen.</string>
+    <string name="bs_low_message">Bitte nehmen sie Insulin zu sich, der Test wird abgebrochen.</string>
+    <string name="exit">Beenden</string>
+    <string name="fTR_label_tv">Testergebnis zum Profil %1$s vom %2$s</string>
+    <string name="fTR_advice_label">Empfohlene Korrektur:</string>
+    <string name="fTR_recyclerView_clock">%1$02d:00 Uhr</string>
+    <string name="adjustment_text">Basalwert von %2$f um %1$02d:00 Uhr auf %3$f ändern.\n</string>
+    <string name="choose_profile_title">Profil auswählen</string>
+    <string name="profile_updated">Basalraten Profil %1$s wurde aktualisiert</string>
+    <string name="result_please_note">Hinweis: \nBitte wiederholen Sie den Test in naher Zukunft nochmals.</string>
+    <string name="btn_delete_testresult">Testergebnis löschen</string>
+    <string name="result_delete_question">Ergebnis löschen?</string>
+    <string name="result_are_u_sure">Möchten Sie das Testergebnis löschen?</string>
 </resources>

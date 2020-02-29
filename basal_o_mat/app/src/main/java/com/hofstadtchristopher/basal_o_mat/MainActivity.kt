@@ -15,25 +15,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
-    //private lateinit var textMessage: TextView
-    /*private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_start -> {
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_test -> {
-                //textMessage.setText(R.string.title_test)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_protocol -> {
-                    getSupportActionBar()?.setDisplayHomeAsUpEnabled(false)
-                    getSupportActionBar()?.setHomeButtonEnabled(false)
-
-                return@OnNavigationItemSelectedListener true
-            }
-        }
-        false
-    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,42 +28,16 @@ class MainActivity : AppCompatActivity() {
             R.id.navigation_profil,
             R.id.navigation_more
         ).build()
-        //setSupportActionBar(toolbar)
-
-        //val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-
-        //setupActionBar(navController)
-
-        //val navView: BottomNavigationView = findViewById(R.id.nav_view)
-
-        //textMessage = findViewById(R.id.message)
-        //navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-        //test
-        //nav_view.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
         navController = Navigation.findNavController(this,R.id.nav_host_fragment)
         nav_view.setupWithNavController(navController)
 
-        /* toolbar
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        supportActionBar?.setHomeButtonEnabled(false)
-        NavigationUI.setupWithNavController(toolbar, navController)
-         */
-
-        //actionbar
-        //NavigationUI.setupActionBarWithNavController(this, navController)
-
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
-        //setupActionBarWithNavController(navController, appBarConfiguration)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController,null)
     }
-
-    //private fun setupActionBar(navController: NavController) {
-    //    NavigationUI.setupActionBarWithNavController(this, navController)
-    //}
-
 
 }

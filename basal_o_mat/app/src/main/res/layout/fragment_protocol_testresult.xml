@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".dir_Protocol.FragmentProtocolTestresult">
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".dir_Test.FragmentTestResult">
+            >
 
         <com.google.android.material.textview.MaterialTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/fTR_label_tv"
+                android:id="@+id/fPTr_label_tv"
                 tools:text="Testergebnis zum Profil Musterprofil vom 01.01.2020"
                 android:background="@drawable/background_round_corner"
                 android:padding="@dimen/DoubleDefaultMargin"
@@ -30,29 +31,13 @@
 
                 />
 
-        <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/fTR_result_note"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/result_please_note"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fTR_label_tv"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="@dimen/defaultMargin"
-                android:layout_marginStart="@dimen/defaultMargin"
-                android:layout_marginEnd="@dimen/defaultMargin"
-                android:background="@drawable/background_round_corner"
-                android:padding="@dimen/defaultMargin"
-                android:visibility="visible"
-                />
-
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/fTR_recyclerView"
+                android:id="@+id/fPTr_recyclerView"
                 android:layout_width="0dp"
                 android:layout_height="380dp"
                 tools:listitem="@layout/recyclerview_item_result"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fTR_result_note"
+                app:layout_constraintTop_toBottomOf="@id/fPTr_label_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="@dimen/defaultMargin"
                 android:layout_marginStart="4dp"
@@ -62,9 +47,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/fTR_advice"
+                android:id="@+id/fPTr_advice"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fTR_recyclerView"
+                app:layout_constraintTop_toBottomOf="@id/fPTr_recyclerView"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:background="@drawable/background_round_corner"
                 android:layout_marginTop="@dimen/defaultMargin"
@@ -76,7 +61,7 @@
             <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/fTR_advice_label"
+                    android:id="@+id/fPTr_advice_label"
                     android:text="@string/fTR_advice_label"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -87,10 +72,10 @@
             <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/fTR_advice_text"
+                    android:id="@+id/fPTr_advice_text"
                     tools:text="Basalwert von 1.0 um 8:00 Uhr auf 1.0 ändern.\nBasalwert von 1.0 um 9:00 Uhr auf 1.0 ändern "
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/fTR_advice_label"
+                    app:layout_constraintTop_toBottomOf="@id/fPTr_advice_label"
                     android:layout_marginStart="@dimen/defaultMargin"
                     android:layout_marginTop="4dp"
                     />
@@ -98,26 +83,16 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.button.MaterialButton
-                android:id="@+id/fTR_btn_update_prof"
+                android:id="@+id/fPTr_btn_deleteResult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_update_basalrate"
-                app:layout_constraintStart_toEndOf="@id/fTR_btn_exit"
-                app:layout_constraintTop_toBottomOf="@id/fTR_advice"
+                android:text="@string/btn_delete_testresult"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fPTr_advice"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="@dimen/defaultMargin"
                 />
 
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/fTR_btn_exit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/exit"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fTR_advice"
-                app:layout_constraintEnd_toStartOf="@id/fTR_btn_update_prof"
-                android:layout_marginTop="@dimen/defaultMargin"
-                />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>

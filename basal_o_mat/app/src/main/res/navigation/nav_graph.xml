@@ -37,9 +37,13 @@
 
     <fragment
             android:id="@+id/navigation_protocol"
-            android:name="com.hofstadtchristopher.basal_o_mat.FragmentProtocol"
+            android:name="com.hofstadtchristopher.basal_o_mat.dir_Protocol.FragmentProtocol"
             android:label="@string/label_protocol"
-            tools:layout="@layout/fragment_protocol" />
+            tools:layout="@layout/fragment_protocol" >
+        <action
+                android:id="@+id/action_to_fragmentProtocolTestresult"
+                app:destination="@id/fragmentProtocolTestresult" />
+    </fragment>
 
     <fragment
             android:id="@+id/navigation_profil"
@@ -117,6 +121,22 @@
             android:id="@+id/fragmentTestResult"
             android:name="com.hofstadtchristopher.basal_o_mat.dir_Test.FragmentTestResult"
             android:label="@string/label_result"
-            tools:layout="@layout/fragment_test_result" />
+            tools:layout="@layout/fragment_test_result" >
+        <action
+                android:id="@+id/action_to_navigation_start"
+                app:destination="@id/navigation_start" />
+    </fragment>
+    <fragment
+            android:id="@+id/fragmentProtocolTestresult"
+            android:name="com.hofstadtchristopher.basal_o_mat.dir_Protocol.FragmentProtocolTestresult"
+            android:label="@string/label_result"
+            tools:layout="@layout/fragment_protocol_testresult">
+        <action
+                android:id="@+id/action_to_navigation_protocol"
+                app:destination="@id/navigation_protocol" />
+        <argument
+                android:name="tResultPos"
+                app:argType="integer" />
+    </fragment>
 
 </navigation>
