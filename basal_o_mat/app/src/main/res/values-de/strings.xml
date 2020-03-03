@@ -62,4 +62,5 @@
     <string name="btn_delete_testresult">Testergebnis löschen</string>
     <string name="result_delete_question">Ergebnis löschen?</string>
     <string name="result_are_u_sure">Möchten Sie das Testergebnis löschen?</string>
+    <string name="basal_profile_instruction">Bitte geben Sie einen Profilnamen ein und legen Sie die Basalraten Werte fest</string>
 </resources>

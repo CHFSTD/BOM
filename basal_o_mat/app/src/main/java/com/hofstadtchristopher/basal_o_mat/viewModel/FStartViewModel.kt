@@ -11,10 +11,10 @@ class FStartViewModel(application: Application) : AndroidViewModel(application) 
 
     init {
         recViewitems.add(
-            NormItem(R.drawable.ic_highlight_off_black_24dp, "test", "subtest")
+            NormItem(R.drawable.ic_highlight_off_black_24dp, "Placeholder", "Subtitle")
         )
         recViewitems.add(
-            NormItem(R.drawable.ic_highlight_off_black_24dp, "test2", "subtest2")
+            NormItem(R.drawable.ic_highlight_off_black_24dp, "Placeholder2", "Subtitle")
         )
     }
 }

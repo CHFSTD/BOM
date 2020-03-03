@@ -57,9 +57,10 @@ class FragmentBloodsugarInput : Fragment() {
                         vMdl.isTestMode = false
                         MaterialAlertDialogBuilder(context)
                             .setTitle(getString(R.string.bs_high))
-                            .setMessage(getString(R.string.bs_high_message))
+                            .setMessage(getString(R.string.bs_low_message))
                             .setNeutralButton(getString(R.string.ok)) { _,_ ->
                                 vMdl.termPos = vMdl.testProgress    //save terminated position
+                                vMdl.testProgress = vMdl.MAX_TEST_PROGRESS
                                 Navigation.findNavController(it).navigate(FragmentBloodsugarInputDirections.actionToFragmentTestResult())
                             }
                             .show()
@@ -68,9 +69,10 @@ class FragmentBloodsugarInput : Fragment() {
                         vMdl.isTestMode = false
                         MaterialAlertDialogBuilder(context)
                             .setTitle(getString(R.string.bs_low))
-                            .setMessage(getString(R.string.bs_low_message))
+                            .setMessage(getString(R.string.bs_high_message))
                             .setNeutralButton(getString(R.string.ok)) { _,_ ->
                                 vMdl.termPos = vMdl.testProgress    //save terminated position
+                                vMdl.testProgress = vMdl.MAX_TEST_PROGRESS
                                 Navigation.findNavController(it).navigate(FragmentBloodsugarInputDirections.actionToFragmentTestResult())
                             }
                             .show()

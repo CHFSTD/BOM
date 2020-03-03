@@ -70,4 +70,5 @@
     <string name="btn_delete_testresult">delete testresult</string>
     <string name="result_delete_question">Delete Result?</string>
     <string name="result_are_u_sure">Do you want to delete the result?</string>
+    <string name="basal_profile_instruction">Please insert a profile name and input basal unit</string>
 </resources>

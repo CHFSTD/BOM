@@ -19,28 +19,30 @@
                 android:id="@+id/rVProf_pName"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="Profilname"
+                tools:text="Profilname"
+                android:textSize="28sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="@dimen/defaultMargin"
+                android:layout_marginTop="@dimen/DoubleDefaultMargin"
                 >
 
         </TextView>
 
         <TextView
                 android:id="@+id/rVProf_dayDose"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:text="16"
-                android:textSize="32sp"
+                tools:text="16"
+                android:textSize="28sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 app:layout_constraintStart_toEndOf="@id/rVProf_pName"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/DoubleDefaultMargin"
+                android:layout_marginEnd="@dimen/defaultMargin"
                 >
 
         </TextView>

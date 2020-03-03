@@ -29,7 +29,7 @@ class FTestViewModel(application: Application) : AndroidViewModel(application) {
     var isTestMode: Boolean = false
     var measuredData: Array<Int> = Array(MAX_TEST_PROGRESS+1) {0}
     var testProgress: Int = 0
-    var testResult: Array<Any> = Array(MAX_TEST_PROGRESS) {"UNINITIALIZED"}
+    //var testResult: Array<Any> = Array(MAX_TEST_PROGRESS) {"UNINITIALIZED"}
     var termPos: Int = MAX_TEST_PROGRESS+1
     var hourAtStart: Int = 0
     var testDate: String = ""
@@ -90,7 +90,7 @@ class FTestViewModel(application: Application) : AndroidViewModel(application) {
     fun resetTest() {
         measuredData = Array(MAX_TEST_PROGRESS+1) {0}
         testProgress = 0
-        testResult = Array(MAX_TEST_PROGRESS) {"UNINITIALIZED"}
+        //testResult = Array(MAX_TEST_PROGRESS) {"UNINITIALIZED"}
         termPos = MAX_TEST_PROGRESS+1
         hourAtStart = 0
         testDate = ""

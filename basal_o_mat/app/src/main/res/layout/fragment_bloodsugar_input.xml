@@ -20,6 +20,8 @@
             android:layout_marginStart="@dimen/halfDefaultMargin"
             android:text="@string/enter_bloodsugar"
             android:layout_marginTop="@dimen/DoubleDefaultMargin"
+            android:background="@drawable/background_round_corner"
+            android:padding="@dimen/defaultMargin"
         />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -33,6 +35,8 @@
             android:layout_marginStart="@dimen/DoubleDefaultMargin"
             android:layout_marginEnd="@dimen/DoubleDefaultMargin"
             android:layout_marginBottom="@dimen/DoubleDefaultMargin"
+            android:background="@drawable/background_round_corner"
+            android:padding="@dimen/defaultMargin"
             >
 
         <com.google.android.material.textfield.TextInputEditText

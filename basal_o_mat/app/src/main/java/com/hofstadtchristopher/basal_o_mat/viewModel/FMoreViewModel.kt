@@ -8,13 +8,13 @@ class FMoreViewModel() : ViewModel() {
 
     init {
         recViewitems.add(
-            ListItem("test")
+            ListItem("Placeholder Title")
         )
         recViewitems.add(
-            ListItem("test2")
+            ListItem("Placeholder Title")
         )
         recViewitems.add(
-            ListItem("test3")
+            ListItem("Placeholder Title")
         )
     }
 }

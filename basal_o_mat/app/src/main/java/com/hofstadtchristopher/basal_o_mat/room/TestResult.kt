@@ -64,30 +64,30 @@ data class TestResult(
 
     @Ignore
     var bRate: BasalRate = BasalRate(
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
-        10.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
         ""
     )
 
@@ -192,12 +192,10 @@ data class TestResult(
                         tmpTime = getTimeForAdjustment(hourAtStart + 1 + index)
                         tmp = bRate.getRate(tmpTime) - 0.2
                         adjustedRate.setRate(tmpTime, tmp)
-                        val brt = bRate.getRate(tmpTime)
-                        Log.i("Result", "bRate is $brt and tmp is $tmp")
                         rec += if (Locale.getDefault().isO3Language == "deu"){
-                            String.format("Basalwert von %.2f um %02d:00 Uhr auf %.2f ändern.\n", bRate.getRate(tmpTime), tmpTime, tmp)
+                            String.format("Basalwert um %02d:00 Uhr auf %.2f ändern.\n", tmpTime, tmp)
                         } else {
-                            String.format("Adjust basal unit at %02d:00 o'clock with value %.2f to %.2f.\n", tmpTime, bRate.getRate(tmpTime), tmp)
+                            String.format("Adjust basal unit at %02d:00 o'clock to %.2f.\n", tmpTime, tmp)
                         }
                     }
                     el in -25..-16 -> {
@@ -205,12 +203,10 @@ data class TestResult(
                         tmpTime = getTimeForAdjustment(hourAtStart + 1 + index)
                         tmp = bRate.getRate(tmpTime) - 0.1
                         adjustedRate.setRate(tmpTime, tmp)
-                        val brt = bRate.getRate(tmpTime)
-                        Log.i("Result", "bRate is $brt and tmp is $tmp")
                         rec += if (Locale.getDefault().isO3Language == "deu"){
-                            String.format("Basalwert von %.2f um %02d:00 Uhr auf %.2f ändern.\n", bRate.getRate(tmpTime), tmpTime, tmp)
+                            String.format("Basalwert um %02d:00 Uhr auf %.2f ändern.\n", tmpTime, tmp)
                         } else {
-                            String.format("Adjust basal unit at %02d:00 o'clock with value %.2f to %.2f.\n", tmpTime, bRate.getRate(tmpTime), tmp)
+                            String.format("Adjust basal unit at %02d:00 o'clock to %.2f.\n", tmpTime, tmp)
                         }
                     }
                     el in 16..25 -> {
@@ -218,12 +214,10 @@ data class TestResult(
                         tmpTime = getTimeForAdjustment(hourAtStart + 1 + index)
                         tmp = bRate.getRate(tmpTime) + 0.1
                         adjustedRate.setRate(tmpTime, tmp)
-                        val brt = bRate.getRate(tmpTime)
-                        Log.i("Result", "bRate is $brt and tmp is $tmp")
                         rec += if (Locale.getDefault().isO3Language == "deu"){
-                            String.format("Basalwert von %.2f um %02d:00 Uhr auf %.2f ändern.\n", bRate.getRate(tmpTime), tmpTime, tmp)
+                            String.format("Basalwert um %02d:00 Uhr auf %.2f ändern.\n", tmpTime, tmp)
                         } else {
-                            String.format("Adjust basal unit at %02d:00 o'clock with value %f.2 to %f.2.\n", tmpTime, bRate.getRate(tmpTime), tmp)
+                            String.format("Adjust basal unit at %02d:00 o'clock to %.2f.\n", tmpTime, tmp)
                         }
                     }
                     el in 26..4999 -> {
@@ -231,12 +225,10 @@ data class TestResult(
                         tmpTime = getTimeForAdjustment(hourAtStart + 1 + index)
                         tmp = bRate.getRate(tmpTime) + 0.2
                         adjustedRate.setRate(tmpTime, tmp)
-                        val brt = bRate.getRate(tmpTime)
-                        Log.i("Result", "bRate is $brt and tmp is $tmp")
                         rec += if (Locale.getDefault().isO3Language == "deu"){
-                            String.format("Basalwert von %.2f um %02d:00 Uhr auf %.2f ändern.\n", bRate.getRate(tmpTime), tmpTime, tmp)
+                            String.format("Basalwert um %02d:00 Uhr auf %.2f ändern.\n", tmpTime, tmp)
                         } else {
-                            String.format("Adjust basal unit at %02d:00 o'clock with value %.2f to %.2f.\n", tmpTime, bRate.getRate(tmpTime), tmp)
+                            String.format("Adjust basal unit at %02d:00 o'clock to %.2f.\n", tmpTime, tmp)
                         }
                     }
                 }
