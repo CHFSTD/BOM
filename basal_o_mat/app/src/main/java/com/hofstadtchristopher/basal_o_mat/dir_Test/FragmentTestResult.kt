@@ -47,6 +47,7 @@ class FragmentTestResult : Fragment() {
         if(vMdl.res.recommendation == "Keine Korrektur nötig, Basalrate ist OK"
             || vMdl.res.recommendation == "No need for adjustments, Basalrate is OK") {
             fTR_result_note.visibility= View.GONE
+            fTR_btn_update_prof.isEnabled = false
         }
 
         fTR_btn_exit.setOnClickListener {
@@ -58,6 +59,7 @@ class FragmentTestResult : Fragment() {
             MaterialAlertDialogBuilder(context)
                 .setMessage(getString(R.string.profile_updated, vMdl.chosenBRate.name))
                 .setNeutralButton(getString(R.string.ok)) { _, _ ->
+                    vMdl.update(vMdl.res.adjustedRate)
                     Navigation.findNavController(it).navigate(FragmentTestResultDirections.actionToNavigationStart())
                 }
                 .show()

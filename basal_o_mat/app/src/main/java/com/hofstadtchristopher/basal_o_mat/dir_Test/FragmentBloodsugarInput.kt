@@ -54,26 +54,28 @@ class FragmentBloodsugarInput : Fragment() {
                 //terminate test when bloodsugar is too high or low
                 when {
                     x > 200 -> {
-                        vMdl.isTestMode = false
                         MaterialAlertDialogBuilder(context)
                             .setTitle(getString(R.string.bs_high))
                             .setMessage(getString(R.string.bs_low_message))
                             .setNeutralButton(getString(R.string.ok)) { _,_ ->
-                                vMdl.termPos = vMdl.testProgress    //save terminated position
-                                vMdl.testProgress = vMdl.MAX_TEST_PROGRESS
-                                Navigation.findNavController(it).navigate(FragmentBloodsugarInputDirections.actionToFragmentTestResult())
+                                vMdl.isTestMode = false
+                                vMdl.resetTest()
+                                //vMdl.termPos = vMdl.testProgress    //save terminated position
+                                //vMdl.testProgress = vMdl.MAX_TEST_PROGRESS+1
+                                Navigation.findNavController(it).navigate(FragmentBloodsugarInputDirections.actionToNavigationTest())
                             }
                             .show()
                     }
                     x < 65 -> {
-                        vMdl.isTestMode = false
                         MaterialAlertDialogBuilder(context)
                             .setTitle(getString(R.string.bs_low))
                             .setMessage(getString(R.string.bs_high_message))
                             .setNeutralButton(getString(R.string.ok)) { _,_ ->
-                                vMdl.termPos = vMdl.testProgress    //save terminated position
-                                vMdl.testProgress = vMdl.MAX_TEST_PROGRESS
-                                Navigation.findNavController(it).navigate(FragmentBloodsugarInputDirections.actionToFragmentTestResult())
+                                vMdl.isTestMode = false
+                                vMdl.resetTest()
+                                //vMdl.termPos = vMdl.testProgress    //save terminated position
+                                //vMdl.testProgress = vMdl.MAX_TEST_PROGRESS+1
+                                Navigation.findNavController(it).navigate(FragmentBloodsugarInputDirections.actionToNavigationTest())
                             }
                             .show()
                     }
