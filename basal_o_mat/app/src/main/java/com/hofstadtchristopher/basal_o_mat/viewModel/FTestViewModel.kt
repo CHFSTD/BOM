@@ -20,21 +20,29 @@ class FTestViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: BomRepository
     var allBasalRates: LiveData<List<BasalRate>>
 
+    /*
+    * Tst variables, needed during the test
+    */
     var bRateNames = emptyList<BasalRate>()
     var size = 0
     lateinit var chosenBRate: BasalRate
     var chosenBRatePos: Int = 0
 
 
+    /*
+    * Test Result variables, needed to save and calculate the test
+    */
     var isTestMode: Boolean = false
     var measuredData: Array<Int> = Array(MAX_TEST_PROGRESS+1) {0}
     var testProgress: Int = 0
-    //var testResult: Array<Any> = Array(MAX_TEST_PROGRESS) {"UNINITIALIZED"}
     var termPos: Int = MAX_TEST_PROGRESS+1
     var hourAtStart: Int = 0
     var testDate: String = ""
     lateinit var res: TestResult
 
+    /*
+    * Timer variables
+    */
     lateinit var timer: CountDownTimer
     var timeLeftInMillis: Long = START_TIME_IN_MILLIS
     var isTimerRunning: Boolean = false
@@ -90,7 +98,6 @@ class FTestViewModel(application: Application) : AndroidViewModel(application) {
     fun resetTest() {
         measuredData = Array(MAX_TEST_PROGRESS+1) {0}
         testProgress = 0
-        //testResult = Array(MAX_TEST_PROGRESS) {"UNINITIALIZED"}
         termPos = MAX_TEST_PROGRESS+1
         hourAtStart = 0
         testDate = ""

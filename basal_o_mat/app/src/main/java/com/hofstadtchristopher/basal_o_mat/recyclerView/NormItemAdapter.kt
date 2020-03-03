@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hofstadtchristopher.basal_o_mat.R
 import kotlinx.android.synthetic.main.recyclerview_item_normal.view.*
 
+/*
+* Item Adapter for generic RecyclerView using CardViews as Items
+*/
 class NormItemAdapter internal constructor(
     context: Context
 ) : RecyclerView.Adapter<NormItemAdapter.NormItemHolder>() {

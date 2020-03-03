@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hofstadtchristopher.basal_o_mat.R
 import com.hofstadtchristopher.basal_o_mat.room.TestResult
 import kotlinx.android.synthetic.main.recyclerview_item_result_protocol.view.*
-
+/*
+* Item Adapter for RecyclerView in FragmentProtocolTestResult
+*/
 class TestResultItemAdapter: RecyclerView.Adapter<TestResultItemAdapter.TestResultItemHolder>() {
     private var items = emptyList<TestResult>()
     private var listener: OnItemClickListener? = null

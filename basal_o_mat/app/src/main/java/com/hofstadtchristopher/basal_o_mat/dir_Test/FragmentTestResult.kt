@@ -20,9 +20,7 @@ import com.hofstadtchristopher.basal_o_mat.recyclerView.ResultItemAdapter
 import com.hofstadtchristopher.basal_o_mat.viewModel.FTestViewModel
 import kotlinx.android.synthetic.main.fragment_test_result.*
 
-/**
- * A simple [Fragment] subclass.
- */
+
 class FragmentTestResult : Fragment() {
     lateinit var vMdl: FTestViewModel
     private lateinit var recyclerView: RecyclerView

@@ -20,7 +20,7 @@ import com.hofstadtchristopher.basal_o_mat.viewModel.FTestViewModel
 import kotlinx.android.synthetic.main.fragment_bloodsugar_input.*
 
 /**
- * A simple [Fragment] subclass.
+ * Fragment shown after timer finished to input bloodsugar value
  */
 class FragmentBloodsugarInput : Fragment() {
     private lateinit var vMdl: FTestViewModel

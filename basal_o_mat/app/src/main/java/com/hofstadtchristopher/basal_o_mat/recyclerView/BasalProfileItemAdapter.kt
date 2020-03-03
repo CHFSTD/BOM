@@ -9,6 +9,9 @@ import com.hofstadtchristopher.basal_o_mat.R
 import com.hofstadtchristopher.basal_o_mat.room.BasalRate
 import kotlinx.android.synthetic.main.recyclerview_item_basal_profile.view.*
 
+/*
+* Item Adapter for RecyclerView in FragmentProfile
+*/
 class BasalProfileItemAdapter : RecyclerView.Adapter<BasalProfileItemAdapter.BasalProfileItemHolder>() {
 
     private var items = emptyList<BasalRate>()

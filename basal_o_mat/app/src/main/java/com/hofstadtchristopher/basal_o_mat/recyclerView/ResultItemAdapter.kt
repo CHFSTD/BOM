@@ -13,9 +13,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hofstadtchristopher.basal_o_mat.R
 import com.hofstadtchristopher.basal_o_mat.room.TestResult
-import com.hofstadtchristopher.basal_o_mat.util.TestResultHelper
 import kotlinx.android.synthetic.main.recyclerview_item_result.view.*
 
+/*
+* Item Adapter for RecyclerView in FragmentTestResult
+*/
 class ResultItemAdapter(var tResult: TestResult, private var context: Context) : RecyclerView.Adapter<ResultItemAdapter.ResultItemHolder>() {
 
     //private var helper: TestResultHelper = TestResultHelper(tResult)
